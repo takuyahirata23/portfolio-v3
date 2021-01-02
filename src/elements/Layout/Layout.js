@@ -1,6 +1,6 @@
 import { Box } from '@material-ui/core'
 import PropTypes from 'prop-types'
-import Header from '../Header'
+import { Header } from '../../components'
 import useStyles from './useStyles'
 
 const Layout = ({ children }) => {

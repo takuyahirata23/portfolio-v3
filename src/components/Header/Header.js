@@ -4,6 +4,7 @@ import { Box, Drawer, IconButton, Typography } from '@material-ui/core'
 import { Menu, Close } from '@material-ui/icons'
 import { ROUTES } from '../../utils/constants'
 import useStyles from './useStyles'
+import { Logo } from '../../elements'
 
 const NavLink = ({ LABEL, URL }) => (
   <li key={LABEL}>
@@ -25,9 +26,10 @@ export default function Header() {
       component="header"
       display="flex"
       justifyContent="space-between"
+      p={[2, 2, 4]}
       className={cls.header}
     >
-      <Typography variant="h1">Takuya Hirata</Typography>
+      <Logo />
       <IconButton onClick={toggle}>
         <Menu />
       </IconButton>
