@@ -1,11 +1,9 @@
-import { Box, makeStyles } from '@material-ui/core'
-import { Header } from '..'
+import { Box, Typography, makeStyles } from '@material-ui/core'
+import { Layout } from '../../elements'
 
 const useStyles = makeStyles(({ palette }) => ({
-  root: {
-    backgroundColor: palette.background.default,
+  wrapper: {
     minHeight: '100vh',
-    color: palette.text.primary,
   },
 }))
 
@@ -13,8 +11,19 @@ export default function App() {
   const cls = useStyles()
 
   return (
-    <Box className={cls.root}>
-      <Header />
-    </Box>
+    <Layout>
+      <Box
+        display="flex"
+        justifyContent="center"
+        flexDirection="column"
+        alignItems="center"
+        className={cls.wrapper}
+      >
+        <Typography variant="body1" color="primary">
+          compose(smile, sayHello, getTodo)(me)
+        </Typography>
+        <Typography variant="h2">Hello. I write code :)</Typography>
+      </Box>
+    </Layout>
   )
 }
