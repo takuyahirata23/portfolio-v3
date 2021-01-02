@@ -5,4 +5,9 @@ export default makeStyles(({ palette }) => ({
     backgroundColor: palette.background.default,
     color: palette.text.primary,
   },
+  container: {
+    width: '1200px',
+    maxWidth: '90vw',
+    margin: '0 auto',
+  },
 }))
