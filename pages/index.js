@@ -1,5 +1,10 @@
-import App from '../src/components/App'
+import { Banner } from '../src/components'
+import { Layout } from '../src/elements'
 
 export default function Index() {
-  return <App />
+  return (
+    <Layout>
+      <Banner />
+    </Layout>
+  )
 }
