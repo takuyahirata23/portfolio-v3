@@ -14,6 +14,7 @@ export default function Header() {
       justifyContent="space-between"
       p={[2, 2, 4]}
       className={cls.header}
+      bgcolor="background.default"
     >
       <Logo />
       <Navigation />
