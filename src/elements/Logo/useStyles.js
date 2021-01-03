@@ -1,6 +1,6 @@
 import { makeStyles } from '@material-ui/core'
 
-export default makeStyles(({ palette }) => ({
+export default makeStyles(({ palette, breakpoints }) => ({
   '@keyframes drewAnimation': {
     to: {
       strokeDashoffset: 0,
@@ -9,6 +9,10 @@ export default makeStyles(({ palette }) => ({
   wrapper: {
     width: '3rem',
     height: '3rem',
+    [breakpoints.down('xs')]: {
+      width: '2.5rem',
+      height: '2.5rem',
+    },
   },
   logoBase: {
     stroke: palette.text.primary,
