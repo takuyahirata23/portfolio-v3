@@ -3,8 +3,8 @@ import PropTypes from 'prop-types'
 import { Header } from '../../components'
 import useStyles from './useStyles'
 
-const Layout = ({ children }) => {
-  const cls = useStyles()
+const Layout = ({ children, withHeader }) => {
+  const cls = useStyles({ withHeader })
   return (
     <Box className={cls.root}>
       <Header />
@@ -13,8 +13,13 @@ const Layout = ({ children }) => {
   )
 }
 
+Layout.defaultProps = {
+  withHeader: false,
+}
+
 Layout.propTypes = {
   children: PropTypes.node.isRequired,
+  withHeader: PropTypes.bool,
 }
 
 export default Layout
