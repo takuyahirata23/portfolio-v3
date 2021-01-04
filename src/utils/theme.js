@@ -21,3 +21,25 @@ export const darkTheme = createMuiTheme({
     fontFamily: ['Cormorant Garamond', 'serif'].join(', '),
   },
 })
+
+darkTheme.typography.h1 = {
+  fontSize: '4rem',
+  fontFamily: ['Cormorant Garamond', 'serif'].join(', '),
+  [darkTheme.breakpoints.down('sm')]: {
+    fontSize: '3rem',
+  },
+  [darkTheme.breakpoints.down('xs')]: {
+    fontSize: '2.3rem',
+  },
+}
+
+darkTheme.typography.body1 = {
+  fontSize: '1.4rem',
+  fontFamily: ['Cormorant Garamond', 'serif'].join(', '),
+  [darkTheme.breakpoints.down('sm')]: {
+    fontSize: '1.2rem',
+  },
+  [darkTheme.breakpoints.down('xs')]: {
+    fontSize: '.95rem',
+  },
+}
