@@ -1,8 +1,26 @@
+import { useState, useLayoutEffect } from 'react'
 import { Box, Typography } from '@material-ui/core'
+import { updateHeightIO } from '../../utils/functions'
 import useStyles from './useStyles'
 
 export default function Banner() {
-  const cls = useStyles()
+  const [height, setHeight] = useState(null)
+
+  const updateHeight = updateHeightIO(setHeight)
+  const handleResize = () => updateHeight.unsafePerformIO()
+
+  useLayoutEffect(() => {
+    handleResize()
+  }, [])
+
+  useLayoutEffect(() => {
+    window.addEventListener('resize', handleResize)
+    return () => {
+      window.removeEventListener('resize', handleResize)
+    }
+  }, [])
+
+  const cls = useStyles({ height })
 
   return (
     <Box
