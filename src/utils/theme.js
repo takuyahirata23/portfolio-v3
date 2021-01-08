@@ -33,8 +33,20 @@ darkTheme.typography.h1 = {
   },
 }
 
+darkTheme.typography.h2 = {
+  fontSize: '3.3rem',
+  fontFamily: ['Cormorant Garamond', 'serif'].join(', '),
+  [darkTheme.breakpoints.down('sm')]: {
+    fontSize: '2.5rem',
+  },
+  [darkTheme.breakpoints.down('xs')]: {
+    fontSize: '2rem',
+  },
+}
+
 darkTheme.typography.body1 = {
   fontSize: '1.4rem',
+  maxWidth: '45rem',
   fontFamily: ['Cormorant Garamond', 'serif'].join(', '),
   [darkTheme.breakpoints.down('sm')]: {
     fontSize: '1.2rem',
