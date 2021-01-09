@@ -16,6 +16,7 @@ export const darkTheme = createMuiTheme({
     background: {
       default: '#0B132B',
     },
+    divider: '#3A506B',
   },
   typography: {
     fontFamily: ['Cormorant Garamond', 'serif'].join(', '),
@@ -45,13 +46,16 @@ darkTheme.typography.h2 = {
 }
 
 darkTheme.typography.body1 = {
-  fontSize: '1.4rem',
+  fontSize: '1.2rem',
   maxWidth: '45rem',
-  fontFamily: ['Cormorant Garamond', 'serif'].join(', '),
+  lineHeight: 1.4,
+  [darkTheme.breakpoints.down('lg')]: {
+    fontSize: '1.1rem',
+  },
   [darkTheme.breakpoints.down('sm')]: {
-    fontSize: '1.2rem',
+    fontSize: '1.1rem',
   },
   [darkTheme.breakpoints.down('xs')]: {
-    fontSize: '.95rem',
+    fontSize: '1rem',
   },
 }

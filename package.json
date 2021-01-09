@@ -15,6 +15,7 @@
     "ramda": "^0.27.1",
     "react": "17.0.1",
     "react-dom": "17.0.1",
-    "typeface-cormorant-garamond": "^1.1.13"
+    "typeface-cormorant-garamond": "^1.1.13",
+    "typeface-proza-libre": "^1.1.13"
   }
 }

@@ -29,7 +29,7 @@ export default function Banner() {
       alignItems="center"
       className={cls.wrapper}
     >
-      <Typography variant="body1" color="textSecondary" gutterBottom>
+      <Typography color="textSecondary" gutterBottom>
         compose(wave, sayHello, getTodo)(Takuya)
       </Typography>
       <Typography variant="h1" color="textPrimary">
