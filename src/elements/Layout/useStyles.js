@@ -9,9 +9,9 @@ export default makeStyles(({ palette, breakpoints }) => ({
     width: '1200px',
     maxWidth: '90vw',
     margin: '0 auto',
-    paddingTop: withHeader ? '112px' : 0,
+    marginTop: withHeader ? '112px' : 0,
     [breakpoints.down('sm')]: {
-      paddingTop: withHeader ? '80px' : 0,
+      marginTop: withHeader ? '80px' : 0,
     },
   }),
 }))

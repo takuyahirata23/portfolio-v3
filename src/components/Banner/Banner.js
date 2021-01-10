@@ -1,8 +1,32 @@
+import { useState, useLayoutEffect } from 'react'
 import { Box, Typography } from '@material-ui/core'
+import KeyboardArrowDownIcon from '@material-ui/icons/KeyboardArrowDown'
+import { IconButton } from '../../elements'
+import { getHeightIO } from '../../utils/functions'
 import useStyles from './useStyles'
 
 export default function Banner() {
-  const cls = useStyles()
+  const [height, setHeight] = useState(null)
+
+  const updateHeight = () => setHeight(getHeightIO().unsafePerformIO())
+  const scroll = () =>
+    window.scrollTo({
+      top: height,
+      behavior: 'smooth',
+    })
+
+  useLayoutEffect(() => {
+    updateHeight()
+  }, [])
+
+  useLayoutEffect(() => {
+    window.addEventListener('resize', updateHeight)
+    return () => {
+      window.removeEventListener('resize', updateHeight)
+    }
+  }, [])
+
+  const cls = useStyles({ height })
 
   return (
     <Box
@@ -12,17 +36,13 @@ export default function Banner() {
       alignItems="center"
       className={cls.wrapper}
     >
-      <Typography
-        variant="body1"
-        color="primary"
-        gutterBottom
-        className={cls.body1}
-      >
-        compose(smile, sayHello, getTodo)(Takuya)
+      <Typography color="textSecondary" gutterBottom>
+        compose(wave, sayHello, getTodo)(Takuya)
       </Typography>
-      <Typography variant="h1" className={cls.h1}>
-        Hello. I write code :)
+      <Typography variant="h1" color="textPrimary">
+        Hello. I write code 👋
       </Typography>
+      <IconButton onClick={scroll} Icon={KeyboardArrowDownIcon} />
     </Box>
   )
 }
