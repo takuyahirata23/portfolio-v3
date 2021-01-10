@@ -1,21 +1,22 @@
 import { Grid, Typography } from '@material-ui/core'
 import { Divider, Layout } from '../src/elements'
+import { SocialLinks } from '../src/components'
 
 export default function Profile() {
   return (
     <Layout withHeader py>
-      <Typography variant="h2">Takuya Hirata</Typography>
+      <Grid container alignItems="center">
+        <Grid item xl lg md sm xs>
+          <Typography variant="h2">Takuya Hirata</Typography>
+        </Grid>
+        <Grid item>
+          <SocialLinks />
+        </Grid>
+      </Grid>
       <Divider />
       <Typography color="textSecondary" paragraph>
-        I am a motivated software engineer. This is my portfolio site and
-        playground where I try new things and practice.
-      </Typography>
-      <Typography color="textSecondary" paragraph>
-        I mostly work with React and Gatsby to build web applications. I have a
-        passion for expanding my functional programming knowledge.
-      </Typography>
-      <Typography color="textSecondary" paragraph>
-        Currently, I enjoy learning Swift and backend development.
+        I am a motivated software engineer based in Toronto. Currently working
+        at 3merge as a frontend developer.
       </Typography>
     </Layout>
   )

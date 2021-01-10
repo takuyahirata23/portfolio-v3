@@ -47,8 +47,8 @@ darkTheme.typography.h2 = {
 
 darkTheme.typography.body1 = {
   fontSize: '1.2rem',
-  maxWidth: '45rem',
-  lineHeight: 1.4,
+  maxWidth: '42rem',
+  lineHeight: 1.8,
   [darkTheme.breakpoints.down('lg')]: {
     fontSize: '1.1rem',
   },
