@@ -27,7 +27,13 @@ export default function Profile() {
       </Typography>
       <Typography variant="h3">What I do for a living</Typography>
       <Typography color="textSecondary" paragraph>
-        I build things on the internet. I like
+        I build things on the internet. I like to write functional code because
+        it is easier to test and debug.
+      </Typography>
+      <Typography variant="h3">What I do for fun</Typography>
+      <Typography color="textSecondary" paragraph>
+        I like playing video games and playing baseball. I have been learning
+        Swift.
       </Typography>
     </Layout>
   )
