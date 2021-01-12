@@ -1,12 +1,8 @@
-import { useState } from 'react'
-import { Grid, Tab, Tabs, Typography } from '@material-ui/core'
+import { Grid, Typography } from '@material-ui/core'
 import { Divider, Layout } from '../src/elements'
 import { SocialLinks } from '../src/components'
 
 export default function Profile() {
-  const [tab, setTab] = useState(0)
-  const handleTabChange = (e, val) => setTab(val)
-
   return (
     <Layout withHeader py>
       <Grid container alignItems="center">
@@ -18,7 +14,7 @@ export default function Profile() {
         </Grid>
       </Grid>
       <Divider />
-      <Typography variant="h3">Who am I</Typography>
+      <Typography variant="h3">Who I am</Typography>
       <Typography color="textSecondary" paragraph>
         Motivated software engineer based in Toronto. Currently working at
         3merge. <br />
@@ -32,8 +28,7 @@ export default function Profile() {
       </Typography>
       <Typography variant="h3">What I do for fun</Typography>
       <Typography color="textSecondary" paragraph>
-        I like playing video games and playing baseball. I have been learning
-        Swift.
+        I like playing video games, playing baseball and writing code.
       </Typography>
     </Layout>
   )
