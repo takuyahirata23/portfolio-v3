@@ -245,6 +245,10 @@
   resolved "https://registry.yarnpkg.com/@types/prop-types/-/prop-types-15.7.3.tgz#2ab0d5da2e5815f94b0b9d4b95d1e5f243ab2ca7"
   integrity sha512-KfRL3PuHmqQLOG+2tGpRO26Ctg+Cq1E01D2DMriKEATHgWLfeNDmq9e29Q9WIky0dQ3NPkd1mzYH8Lm936Z9qw==
 
+"@types/ramda@github:types/npm-ramda#dist":
+  version "0.25.0"
+  resolved "https://codeload.github.com/types/npm-ramda/tar.gz/9529aa3c8ff70ff84afcbc0be83443c00f30ea90"
+
 "@types/react-transition-group@^4.2.0":
   version "4.4.0"
   resolved "https://registry.yarnpkg.com/@types/react-transition-group/-/react-transition-group-4.4.0.tgz#882839db465df1320e4753e6e9f70ca7e9b4d46d"
@@ -1715,10 +1719,10 @@ for-in@^1.0.2:
   resolved "https://registry.yarnpkg.com/for-in/-/for-in-1.0.2.tgz#81068d295a8142ec0ac726c6e2200c30fb6d5e80"
   integrity sha1-gQaNKVqBQuwKxybG4iAMMPttXoA=
 
-fp-utils-types@^1.4.2:
-  version "1.4.2"
-  resolved "https://registry.yarnpkg.com/fp-utils-types/-/fp-utils-types-1.4.2.tgz#92a937f4e9f5915553c187d1fa759378f2bc3e23"
-  integrity sha512-ccspZTVx8K1Y7oBO/4HbK3FwTetfr5y5rlGtNFJ5yj9fUak+YQuWJDaec1baTQLwFrI79hS6lMz7FhHmXdk+Pw==
+fp-ts@^2.9.5:
+  version "2.9.5"
+  resolved "https://registry.yarnpkg.com/fp-ts/-/fp-ts-2.9.5.tgz#6690cd8b76b84214a38fc77cbbbd04a38f86ea90"
+  integrity sha512-MiHrA5teO6t8zKArE3DdMPT/Db6v2GUt5yfWnhBTrrsVfeCJUUnV6sgFvjGNBKDmEMqVwRFkEePL7wPwqrLKKA==
 
 fragment-cache@^0.2.1:
   version "0.2.1"

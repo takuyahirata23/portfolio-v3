@@ -6,7 +6,7 @@ import { getHeightIO } from '../../utils/functions'
 import useStyles from './useStyles'
 
 export default function Banner() {
-  const [height, setHeight] = useState(null)
+  const [height, setHeight] = useState<any>(undefined)
 
   const updateHeight = () => setHeight(getHeightIO(window)())
   const scroll = () =>
@@ -37,10 +37,10 @@ export default function Banner() {
       className={cls.wrapper}
     >
       <Typography color="textSecondary" gutterBottom>
-        compose(wave, sayHello, getTodo)(Takuya)
+        compose(getTodo, wave, sayHello)(Takuya)
       </Typography>
       <Typography variant="h1" color="textPrimary">
-        Hello. I write code 👋
+        Hello👋 I write code
       </Typography>
       <IconButton onClick={scroll}>
         <KeyboardArrowDownIcon />
