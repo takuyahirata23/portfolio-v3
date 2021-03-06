@@ -8,7 +8,7 @@ import useStyles from './useStyles'
 export default function Banner() {
   const [height, setHeight] = useState(null)
 
-  const updateHeight = () => setHeight(getHeightIO().unsafePerformIO())
+  const updateHeight = () => setHeight(getHeightIO(window)())
   const scroll = () =>
     window.scrollTo({
       top: height,
