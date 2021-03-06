@@ -3,7 +3,7 @@ import { Box, Drawer, IconButton } from '@material-ui/core'
 import { Menu, Close } from '@material-ui/icons'
 import { ROUTES } from '../../utils/constants'
 import { NavLink } from '../../elements'
-import { withList } from '../../hoc'
+import { withList } from '../../hocs'
 import useStyles from './useStyles'
 
 export default function Navigation() {
