@@ -1,9 +1,14 @@
 import { Box } from '@material-ui/core'
-import PropTypes from 'prop-types'
 import { Header } from '../../components'
 import useStyles from './useStyles'
 
-const Layout = ({ children, withHeader, py }) => {
+interface Props {
+  children: React.ReactNode
+  withHeader?: boolean
+  py?: number | number[]
+}
+
+export default function Layout({ children, withHeader = false, py }: Props) {
   const cls = useStyles({ withHeader })
   const padding = py ? [3, 5, 8, 10] : []
   return (
@@ -15,15 +20,3 @@ const Layout = ({ children, withHeader, py }) => {
     </Box>
   )
 }
-
-Layout.defaultProps = {
-  withHeader: false,
-}
-
-Layout.propTypes = {
-  children: PropTypes.node.isRequired,
-  withHeader: PropTypes.bool,
-  py: PropTypes.any,
-}
-
-export default Layout

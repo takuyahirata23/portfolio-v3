@@ -42,7 +42,9 @@ export default function Banner() {
       <Typography variant="h1" color="textPrimary">
         Hello. I write code 👋
       </Typography>
-      <IconButton onClick={scroll} Icon={KeyboardArrowDownIcon} />
+      <IconButton onClick={scroll}>
+        <KeyboardArrowDownIcon />
+      </IconButton>
     </Box>
   )
 }
