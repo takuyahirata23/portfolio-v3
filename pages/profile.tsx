@@ -14,21 +14,10 @@ export default function Profile() {
         </Grid>
       </Grid>
       <Divider />
-      <Typography variant="h3">Who I am</Typography>
       <Typography color="textSecondary" paragraph>
         Motivated software engineer based in Toronto. Currently working at
-        3merge. <br />
-        Published npm package called "fp-utils-types" that help me to write
-        functional code.
-      </Typography>
-      <Typography variant="h3">What I do for a living</Typography>
-      <Typography color="textSecondary" paragraph>
-        I build things on the internet. I like to write functional code because
-        it is easier to test and debug.
-      </Typography>
-      <Typography variant="h3">What I do for fun</Typography>
-      <Typography color="textSecondary" paragraph>
-        I like playing video games, playing baseball and writing code.
+        3merge as a Frontend Developer.
+        <br />
       </Typography>
     </Layout>
   )

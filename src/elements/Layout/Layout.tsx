@@ -5,10 +5,14 @@ import useStyles from './useStyles'
 interface Props {
   children: React.ReactNode
   withHeader?: boolean
-  py?: number | number[]
+  py?: boolean
 }
 
-export default function Layout({ children, withHeader = false, py }: Props) {
+export default function Layout({
+  children,
+  withHeader = false,
+  py = false,
+}: Props) {
   const cls = useStyles({ withHeader })
   const padding = py ? [3, 5, 8, 10] : []
   return (
