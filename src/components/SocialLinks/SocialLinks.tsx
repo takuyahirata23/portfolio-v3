@@ -17,11 +17,15 @@ const links = [
 ]
 
 export default function SocialLinks() {
-  return links.map(({ url, Icon }) => (
-    <a href={url} target="_blank" key={url}>
-      <IconButton>
-        <Icon />
-      </IconButton>
-    </a>
-  ))
+  return (
+    <>
+      {links.map(({ url, Icon }) => (
+        <a href={url} target="_blank" key={url}>
+          <IconButton>
+            <Icon />
+          </IconButton>
+        </a>
+      ))}
+    </>
+  )
 }

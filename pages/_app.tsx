@@ -4,10 +4,11 @@ import { ThemeProvider } from '@material-ui/core'
 import { darkTheme } from '../src/utils/theme'
 import '../src/styles/globals.css'
 
-function MyApp({ Component, pageProps }) {
+function MyApp({ Component, pageProps }: any) {
   useEffect(() => {
     const jssStyles = document.querySelector('#jss-server-side')
     if (jssStyles) {
+      //@ts-ignore
       jssStyles.parentElement.removeChild(jssStyles)
     }
   }, [])

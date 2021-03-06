@@ -2,7 +2,7 @@ import { Box } from '@material-ui/core'
 import { classNames } from '../../utils/functions'
 import useStyles from './useStyles'
 
-const Logo = () => {
+export default function Logo() {
   const cls = useStyles()
 
   return (
@@ -37,5 +37,3 @@ const Logo = () => {
     </Box>
   )
 }
-
-export default Logo

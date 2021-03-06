@@ -1,4 +1,3 @@
-import Link from 'next/link'
 import { Box } from '@material-ui/core'
 import useStyles from './useStyles'
 import { Navigation } from '..'

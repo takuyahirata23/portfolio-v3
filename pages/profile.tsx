@@ -6,7 +6,7 @@ export default function Profile() {
   return (
     <Layout withHeader py>
       <Grid container alignItems="center">
-        <Grid item xl lg md sm xs>
+        <Grid item xl lg md sm xs={12}>
           <Typography variant="h2">Takuya Hirata</Typography>
         </Grid>
         <Grid item>
@@ -15,8 +15,9 @@ export default function Profile() {
       </Grid>
       <Divider />
       <Typography color="textSecondary" paragraph>
-        I am a motivated software engineer based in Toronto. Currently working
-        at 3merge as a frontend developer.
+        Motivated software engineer based in Toronto. Currently working at
+        3merge as a Frontend Developer.
+        <br />
       </Typography>
     </Layout>
   )

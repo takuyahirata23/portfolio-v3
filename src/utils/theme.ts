@@ -45,6 +45,17 @@ darkTheme.typography.h2 = {
   },
 }
 
+darkTheme.typography.h3 = {
+  fontSize: '1.8rem',
+  fontFamily: ['Cormorant Garamond', 'serif'].join(', '),
+  [darkTheme.breakpoints.down('sm')]: {
+    fontSize: '1.5rem',
+  },
+  [darkTheme.breakpoints.down('xs')]: {
+    fontSize: '1.2rem',
+  },
+}
+
 darkTheme.typography.body1 = {
   fontSize: '1.2rem',
   maxWidth: '42rem',
@@ -56,6 +67,6 @@ darkTheme.typography.body1 = {
     fontSize: '1.1rem',
   },
   [darkTheme.breakpoints.down('xs')]: {
-    fontSize: '1rem',
+    fontSize: '.9rem',
   },
 }

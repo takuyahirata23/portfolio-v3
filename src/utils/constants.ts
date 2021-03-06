@@ -7,4 +7,8 @@ export const ROUTES = {
     LABEL: 'Profile',
     URL: '/profile',
   },
+  WORK: {
+    LABEL: 'Work',
+    URL: '/work',
+  },
 }
