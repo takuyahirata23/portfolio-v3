@@ -27,8 +27,8 @@ export default function Index() {
         </Typography>
         <Typography color="textSecondary" paragraph>
           Outside of work, I maintain a couple of small packages which help me
-          write functional code. I have been working on that application. It
-          allows developers to make notes and cheatsheets.
+          write functional code. I have been developing on an application that
+          allows developers to make their notes and cheat sheets.
         </Typography>
         <Typography color="textSecondary" paragraph>
           Other than coding, I like to spend my time with my lovely dog Charlie.
@@ -36,7 +36,7 @@ export default function Index() {
         </Typography>
       </Box>
       <Box pb={10}>
-        <Typography variant="h2">Liks to some of my works</Typography>
+        <Typography variant="h2">Links to some of my works</Typography>
         <Divider />
         <ul>
           <li>
