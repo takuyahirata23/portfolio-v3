@@ -17,8 +17,8 @@ export default function Layout({
   const padding = py ? [3, 5, 8, 10] : []
   return (
     <Box className={cls.root}>
-      <Header />
       <Box className={cls.container} py={padding}>
+        <Header />
         {children}
       </Box>
     </Box>

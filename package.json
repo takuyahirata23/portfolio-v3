@@ -16,7 +16,8 @@
     "react": "17.0.1",
     "react-dom": "17.0.1",
     "typeface-cormorant-garamond": "^1.1.13",
-    "typeface-proza-libre": "^1.1.13"
+    "typeface-proza-libre": "^1.1.13",
+    "typeface-roboto": "^1.1.13"
   },
   "devDependencies": {
     "@types/node": "^14.14.31",
