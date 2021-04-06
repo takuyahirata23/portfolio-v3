@@ -1,10 +1,22 @@
+import React from 'react'
 import { Box } from '@material-ui/core'
 import useStyles from './useStyles'
-import { Navigation } from '..'
 import { Logo } from '../../elements'
+import { isScrollYZero } from '../../utils/functions'
 
 export default function Header() {
-  const cls = useStyles()
+  const [isTop, setIsTop] = React.useState(true)
+  const cls = useStyles({ isTop })
+
+  React.useEffect(() => {
+    //@ts-ignore
+    const handleScroll = () => setIsTop(isScrollYZero(window))
+
+    window.addEventListener('scroll', handleScroll)
+    return () => {
+      window.removeEventListener('scroll', handleScroll)
+    }
+  }, [])
 
   return (
     <Box
@@ -16,7 +28,6 @@ export default function Header() {
       bgcolor="background.default"
     >
       <Logo />
-      <Navigation />
     </Box>
   )
 }
