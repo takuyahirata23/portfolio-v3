@@ -1,3 +1,4 @@
+import React from 'react'
 import { TextField, Grid } from '@material-ui/core'
 
 type GridItemProps = {
@@ -8,10 +9,12 @@ type Props = {
   id: string
   name: string
   value: string
-  onChange: () => void
+  onChange: (e: React.ChangeEvent<HTMLInputElement>) => void
   type?: string
   label?: string
   GridItemProps?: GridItemProps
+  rows?: number
+  multiline?: boolean
 }
 
 export default function Field({
@@ -22,9 +25,11 @@ export default function Field({
   label,
   onChange,
   GridItemProps,
+  rows,
+  multiline,
 }: Props) {
   return (
-    <Grid item {...GridItemProps}>
+    <Grid item xs={12} {...GridItemProps}>
       <TextField
         id={id}
         label={label || name}
@@ -32,7 +37,10 @@ export default function Field({
         value={value}
         onChange={onChange}
         type={type}
+        multiline={multiline}
+        rows={rows}
         variant="outlined"
+        fullWidth
       />
     </Grid>
   )
@@ -40,4 +48,6 @@ export default function Field({
 
 Field.defaultProps = {
   type: 'text',
+  multiline: false,
+  rows: 1,
 }
