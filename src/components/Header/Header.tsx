@@ -2,17 +2,16 @@ import React from 'react'
 import { Box } from '@material-ui/core'
 import useStyles from './useStyles'
 import { Logo } from '../../elements'
-import { getScrollY } from '../../utils/functions'
+import { isScrollYZero } from '../../utils/functions'
 
 export default function Header() {
   const [isTop, setIsTop] = React.useState(true)
   const cls = useStyles({ isTop })
 
   React.useEffect(() => {
-    const handleScroll = () => setIsTop(!Boolean(getScrollY(window)()))
+    const handleScroll = () => setIsTop(isScrollYZero(window))
 
     window.addEventListener('scroll', handleScroll)
-
     return () => {
       window.removeEventListener('scroll', handleScroll)
     }
