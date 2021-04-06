@@ -30,6 +30,7 @@ export default function Profile() {
               height={150}
               layout="responsive"
               alt="Takuya Hirata"
+              className={cls.img}
             />
           </Box>
         </Grid>
@@ -47,6 +48,14 @@ export default function Profile() {
           <Grid item xs={12}>
             <Typography color="textSecondary" paragraph align={alignment}>
               Motivated software engineer based in Toronto. <br />
+              Feel free to check some of my npm packages{' '}
+              <a
+                href="https://www.npmjs.com/~h.takuya"
+                target="_blank"
+                className={cls.link}
+              >
+                here
+              </a>
             </Typography>
           </Grid>
         </Grid>

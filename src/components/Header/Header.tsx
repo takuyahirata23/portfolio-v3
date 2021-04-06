@@ -1,6 +1,5 @@
 import { Box } from '@material-ui/core'
 import useStyles from './useStyles'
-import { Navigation } from '..'
 import { Logo } from '../../elements'
 
 export default function Header() {
@@ -16,7 +15,6 @@ export default function Header() {
       bgcolor="background.default"
     >
       <Logo />
-      <Navigation />
     </Box>
   )
 }

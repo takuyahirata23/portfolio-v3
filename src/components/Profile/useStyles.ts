@@ -1,6 +1,6 @@
 import makeStyles from '@material-ui/core/styles/makeStyles'
 
-export default makeStyles(({ breakpoints, spacing, palette }) => ({
+export default makeStyles(({ breakpoints, spacing, palette, typography }) => ({
   imgWrapper: {
     width: 150,
     height: 150,
@@ -14,5 +14,12 @@ export default makeStyles(({ breakpoints, spacing, palette }) => ({
       width: 180,
       height: 180,
     },
+  },
+  img: {
+    objectFit: 'cover',
+  },
+  link: {
+    color: palette.text.primary,
+    fontWeight: typography.fontWeightBold,
   },
 }))
