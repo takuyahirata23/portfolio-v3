@@ -1,3 +1,4 @@
+import Image from 'next/image'
 import { Grid, Typography } from '@material-ui/core'
 import { Divider, Layout } from '../src/elements'
 import { SocialLinks } from '../src/components'
@@ -5,6 +6,7 @@ import { SocialLinks } from '../src/components'
 export default function Profile() {
   return (
     <Layout withHeader py>
+      <Image src="/" />
       <Grid container alignItems="center">
         <Grid item xl lg md sm xs={12}>
           <Typography variant="h2">Takuya Hirata</Typography>

@@ -63,7 +63,6 @@ darkTheme.typography.h3 = {
 darkTheme.typography.body1 = {
   fontSize: '1.2rem',
   fontFamily: ['Roboto', 'sans-serif'].join(', '),
-  maxWidth: '42rem',
   lineHeight: 1.8,
   [darkTheme.breakpoints.down('lg')]: {
     fontSize: '1.1rem',
