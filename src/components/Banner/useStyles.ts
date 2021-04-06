@@ -11,7 +11,7 @@ export default makeStyles(({ breakpoints, typography }) => ({
     justifyContent: 'center',
   },
   wrapper: ({ height }: Args) => ({
-    height,
+    height: height || '100vh',
     position: 'relative',
   }),
   underlay: {

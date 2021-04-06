@@ -1,24 +1,26 @@
-import { useState, useLayoutEffect } from 'react'
+import React from 'react'
 import { Box, Typography, IconButton } from '@material-ui/core'
 import KeyboardArrowDownIcon from '@material-ui/icons/KeyboardArrowDown'
 import { getHeightIO, scroll, classNames } from '../../utils/functions'
 import useStyles from './useStyles'
 
 export default function Banner() {
-  const [height, setHeight] = useState<any>(0)
+  const [height, setHeight] = React.useState<number>(0)
 
-  const updateHeight = () => setHeight(getHeightIO(window)())
+  const updateHeight = () => setHeight(getHeightIO(window))
 
-  useLayoutEffect(() => {
+  React.useEffect(() => {
     window.addEventListener('resize', updateHeight)
     return () => {
       window.removeEventListener('resize', updateHeight)
     }
   }, [])
 
-  useLayoutEffect(() => {
+  React.useEffect(() => {
     updateHeight()
   }, [])
+
+  console.log(height)
 
   const cls = useStyles({ height })
 

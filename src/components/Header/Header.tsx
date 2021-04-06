@@ -9,6 +9,7 @@ export default function Header() {
   const cls = useStyles({ isTop })
 
   React.useEffect(() => {
+    //@ts-ignore
     const handleScroll = () => setIsTop(isScrollYZero(window))
 
     window.addEventListener('scroll', handleScroll)

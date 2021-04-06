@@ -1,15 +1,15 @@
-import dynamic from 'next/dynamic'
+//import dynamic from 'next/dynamic'
 import { Layout } from '../src/elements'
-import { Profile, Contact } from '../src/components'
+import { Banner, Profile, Contact } from '../src/components'
 
-const BannerWithNoSSR = dynamic(() => import('../src/components/Banner'), {
-  ssr: false,
-})
+// const BannerWithNoSSR = dynamic(() => import('../src/components/Banner'), {
+//   ssr: false,
+// })
 
 export default function Index() {
   return (
     <Layout>
-      <BannerWithNoSSR />
+      <Banner />
       <Profile />
       <Contact />
     </Layout>
