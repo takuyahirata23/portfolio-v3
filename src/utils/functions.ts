@@ -5,7 +5,7 @@ export const classNames = (...args: string[]): string => args.join(' ')
 
 export const toBoolean = (x: any): boolean => Boolean(x)
 
-export const getHeightIO = prop('innerHeight')
+export const getHeight = prop('innerHeight')
 
 //@ts-ignore
 export const isScrollYZero = compose(not, toBoolean, prop('scrollY'))
