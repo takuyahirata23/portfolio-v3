@@ -9,8 +9,11 @@ export const getHeight = prop('innerHeight')
 export const toLabel = (str: string): string =>
   toUpper(str.charAt(0)).concat(str.slice(1))
 
-//@ts-ignore
-export const isScrollYZero = compose(not, toBoolean, prop('scrollY'))
+export const isScrollYZero: (x: any) => boolean = compose(
+  not,
+  toBoolean,
+  prop('scrollY')
+)
 
 export const scroll = (height: number): (() => void) => () =>
   window.scrollTo({
