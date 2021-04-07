@@ -36,6 +36,7 @@ export default function Contact() {
           GridItemProps={{
             md: 6,
           }}
+          required
         />
         <Field
           id="email"

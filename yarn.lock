@@ -1787,6 +1787,11 @@ fsevents@~2.1.2:
   resolved "https://registry.yarnpkg.com/fsevents/-/fsevents-2.1.3.tgz#fb738703ae8d2f9fe900c33836ddebee8b97f23e"
   integrity sha512-Auw9a4AxqWpa9GUfj370BMPzzyncfBABW8Mab7BGWBYDj4Isgq+cDKtx0i6u9jcX9pQDnswsaaOTgTmA5pEjuQ==
 
+fts-utils@^1.0.9:
+  version "1.0.9"
+  resolved "https://registry.yarnpkg.com/fts-utils/-/fts-utils-1.0.9.tgz#aec3ee57d3904d8836605e1b6a8765c19078d116"
+  integrity sha512-SclJORhVLW3Od4EMbnMGQcFU7hnol0pBhf7PKeOBrxK9nPlWAsqN35+yn5RT7TuPibq2P9HshHRDaW7HUrN2+A==
+
 gauge@~2.7.3:
   version "2.7.4"
   resolved "https://registry.yarnpkg.com/gauge/-/gauge-2.7.4.tgz#2c03405c7538c39d7eb37b317022e325fb018bf7"
@@ -4047,16 +4052,6 @@ typedarray@^0.0.6:
   version "0.0.6"
   resolved "https://registry.yarnpkg.com/typedarray/-/typedarray-0.0.6.tgz#867ac74e3864187b1d3d47d996a78ec5c8830777"
   integrity sha1-hnrHTjhkGHsdPUfZlqeOxciDB3c=
-
-typeface-cormorant-garamond@^1.1.13:
-  version "1.1.13"
-  resolved "https://registry.yarnpkg.com/typeface-cormorant-garamond/-/typeface-cormorant-garamond-1.1.13.tgz#47e18fe1362c21b9b1381453d7c53c85a3cac9b1"
-  integrity sha512-LgDoQk6uZAPzNaxCgjCO/bigbwjQymqSesqORthVvXSuy4yICLZ30IitQHYIQpOvQ4PC6B8BfNx5NSPezmLc8A==
-
-typeface-proza-libre@^1.1.13:
-  version "1.1.13"
-  resolved "https://registry.yarnpkg.com/typeface-proza-libre/-/typeface-proza-libre-1.1.13.tgz#34887e243de098a681fc6e137d68055fac91b526"
-  integrity sha512-jck38b8Kx0hcWr4gAcDOfXAXhmKSGRD1oa4At+wu5PV4eLJGCj+7I/dQ3pYXwQlqEvnw0SZNmiCVQa2kZUzG+g==
 
 typeface-roboto@^1.1.13:
   version "1.1.13"
