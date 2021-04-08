@@ -3,13 +3,6 @@ import { Field, Form } from '../../elements'
 import { useFields } from '../../hooks'
 import useStyles from './useStyles'
 
-// type IV = {
-//   name: string
-//   subject: string
-//   email: string
-//   message: string
-// }
-
 const initialValues = {
   name: '',
   subject: '',
@@ -20,16 +13,19 @@ const initialValues = {
 export default function Contact() {
   const { fields, handleChange } = useFields(initialValues)
   const cls = useStyles()
-  const onSubmit = () => undefined
+
+  const onSubmit = (e: any) => {
+    e.preventDefault()
+    console.log(e)
+  }
 
   return (
-    <Box className={cls.formWrapper} align="center">
+    <Box className={cls.formWrapper}>
       <Typography variant="h3" gutterBottom>
         Questions? Get in touch!
       </Typography>
       <Form onSubmit={onSubmit}>
         <Field
-          id="name"
           name="name"
           value={fields.name}
           onChange={handleChange}
@@ -39,27 +35,27 @@ export default function Contact() {
           required
         />
         <Field
-          id="email"
           name="email"
           value={fields.email}
           onChange={handleChange}
           GridItemProps={{
             md: 6,
           }}
+          required
         />
         <Field
-          id="subject"
           name="subject"
           value={fields.subject}
           onChange={handleChange}
+          required
         />
         <Field
-          id="message"
           name="message"
           value={fields.message}
           onChange={handleChange}
           rows={5}
           multiline
+          required
         />
       </Form>
     </Box>
