@@ -1,5 +1,5 @@
 import React from 'react'
-import { compose, lensProp, over } from 'ramda'
+import { compose, lensProp, set } from 'ramda'
 import { validate as runValidation } from '../utils/validation'
 import { O, R } from '../utils/types'
 
@@ -50,7 +50,7 @@ export default function useFields(iv: O) {
   const handleChange = ({
     target: { name, value },
   }: React.ChangeEvent<HTMLInputElement>) =>
-    setFields(over(getNestedLens(name), () => value, fields))
+    setFields(set(getNestedLens(name), value, fields))
 
   return {
     fields,
