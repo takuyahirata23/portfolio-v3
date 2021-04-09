@@ -1,7 +1,7 @@
 import React from 'react'
-import { compose, lensProp, set } from 'ramda'
+import { lensPath, set } from 'ramda'
 import { validate as runValidation } from '../utils/validation'
-import { O, R } from '../utils/types'
+import { O } from '../utils/types'
 
 type Field = {
   value: any
@@ -20,21 +20,8 @@ export const toFieldShape = (iv: O): Fields =>
     {}
   )
 
-const commonLensPaths: R = {
-  value: lensProp('value'),
-  helperText: lensProp('helperText'),
-  error: lensProp('error'),
-}
-
-const createLens = (iv: O) =>
-  Object.keys(iv).reduce(
-    (acc, x) => Object.assign(acc, { [x]: lensProp(x) }),
-    commonLensPaths
-  )
-
 export default function useFields(iv: O) {
   const [fields, setFields] = React.useState<any>(() => toFieldShape(iv))
-  const L: R = createLens(iv)
 
   const resetFields = () => setFields(toFieldShape(iv))
 
@@ -45,12 +32,10 @@ export default function useFields(iv: O) {
     return res.isValid
   }
 
-  const getNestedLens = (key: string): any => compose(L[key], L.value)
-
   const handleChange = ({
     target: { name, value },
   }: React.ChangeEvent<HTMLInputElement>) =>
-    setFields(set(getNestedLens(name), value, fields))
+    setFields(set(lensPath([name, 'value']), value, fields))
 
   return {
     fields,
