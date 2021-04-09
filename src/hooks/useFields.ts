@@ -1,5 +1,5 @@
 import React from 'react'
-import { compose, lensProp, lensPath, over } from 'ramda'
+import { compose, lensProp, over } from 'ramda'
 import { validate as runValidation } from '../utils/validation'
 import { O, R } from '../utils/types'
 
@@ -26,7 +26,7 @@ const commonLensPaths: R = {
   error: lensProp('error'),
 }
 
-export const createLens = (iv: O) =>
+const createLens = (iv: O) =>
   Object.keys(iv).reduce(
     (acc, x) => Object.assign(acc, { [x]: lensProp(x) }),
     commonLensPaths
@@ -40,9 +40,7 @@ export default function useFields(iv: O) {
 
   const validate = () => {
     const res = runValidation(fields)
-    if (!res.isValid) {
-      setFields(res.fields)
-    }
+    setFields(res.fields)
 
     return res.isValid
   }

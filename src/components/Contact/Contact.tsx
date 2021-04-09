@@ -11,14 +11,19 @@ const initialValues = {
 }
 
 export default function Contact() {
-  const { fields, handleChange, validate } = useFields(initialValues)
+  const { fields, handleChange, validate, resetFields } = useFields(
+    initialValues
+  )
   const cls = useStyles()
 
   const onSubmit = (e: any) => {
     e.preventDefault()
-    validate()
+    const res = validate()
+    if (res) {
+      console.log('lets go!')
+    }
   }
-
+  console.log('render')
   return (
     <Box className={cls.formWrapper}>
       <Typography variant="h3" gutterBottom>
@@ -58,6 +63,7 @@ export default function Contact() {
           required
         />
       </Form>
+      <button onClick={resetFields}>reset</button>
     </Box>
   )
 }
