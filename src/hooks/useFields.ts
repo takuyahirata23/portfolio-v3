@@ -1,6 +1,6 @@
 import React from 'react'
 import { compose, lensProp, lensPath, over } from 'ramda'
-import { validate } from '../utils/validation'
+import { validate as runValidation } from '../utils/validation'
 import { O, R } from '../utils/types'
 
 type Field = {
@@ -16,7 +16,7 @@ type Fields = {
 export const toFieldShape = (iv: O): Fields =>
   Object.entries(iv).reduce(
     (acc, [key, value]) =>
-      Object.assign(acc, { [key]: { value, error: false, helperText: '' } }),
+      Object.assign(acc, { [key]: { value, error: false, helperText: ' ' } }),
     {}
   )
 
@@ -38,6 +38,15 @@ export default function useFields(iv: O) {
 
   const resetFields = () => setFields(toFieldShape(iv))
 
+  const validate = () => {
+    const res = runValidation(fields)
+    if (!res.isValid) {
+      setFields(res.fields)
+    }
+
+    return res.isValid
+  }
+
   const getNestedLens = (key: string): any => compose(L[key], L.value)
 
   const handleChange = ({
@@ -48,7 +57,7 @@ export default function useFields(iv: O) {
   return {
     fields,
     handleChange,
-    validate: () => true,
+    validate,
     resetFields,
   }
 }

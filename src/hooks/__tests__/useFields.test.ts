@@ -2,7 +2,7 @@ import { toFieldShape } from '../useFields'
 
 const value = {
   value: '',
-  helperText: '',
+  helperText: ' ',
   error: false,
 }
 

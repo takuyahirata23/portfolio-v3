@@ -2,7 +2,7 @@ import { validate } from '../validation'
 
 const iv = {
   value: '',
-  helperText: '',
+  helperText: ' ',
   error: false,
 }
 
@@ -16,7 +16,7 @@ describe('validate', () => {
     expect(res.fields.name).toEqual({
       value: '',
       error: false,
-      helperText: '',
+      helperText: ' ',
     })
   })
 
@@ -40,7 +40,7 @@ describe('validate', () => {
     expect(res.fields.email).toEqual({
       value,
       error: false,
-      helperText: '',
+      helperText: ' ',
     })
   })
 })

@@ -16,7 +16,7 @@ export default function Contact() {
 
   const onSubmit = (e: any) => {
     e.preventDefault()
-    validate() && console.log('lets go!')
+    validate()
   }
 
   return (
@@ -34,31 +34,30 @@ export default function Contact() {
           }}
           required
         />
+        <Field
+          name="email"
+          fromFields={fields.email}
+          onChange={handleChange}
+          GridItemProps={{
+            md: 6,
+          }}
+          required
+        />
+        <Field
+          name="subject"
+          fromFields={fields.subject}
+          onChange={handleChange}
+          required
+        />
+        <Field
+          name="message"
+          fromFields={fields.message}
+          onChange={handleChange}
+          rows={5}
+          multiline
+          required
+        />
       </Form>
     </Box>
   )
 }
-
-// <Field
-//   name="email"
-//   value={fields.email}
-//   onChange={handleChange}
-//   GridItemProps={{
-//     md: 6,
-//   }}
-//   required
-// />
-// <Field
-//   name="subject"
-//   value={fields.subject}
-//   onChange={handleChange}
-//   required
-// />
-// <Field
-//   name="message"
-//   value={fields.message}
-//   onChange={handleChange}
-//   rows={5}
-//   multiline
-//   required
-// />
