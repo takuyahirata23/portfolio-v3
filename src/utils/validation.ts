@@ -1,6 +1,7 @@
+//@ts-ignore
 import { compose, lensPath, set, not, mergeRight } from 'ramda'
 import { Predicate } from 'fts-utils'
-import { R } from './types'
+import { R, O } from './types'
 
 const isEmail = (email: string) => /^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(email)
 
@@ -14,7 +15,7 @@ export const updateField = ({
   status,
 }: {
   key: string
-  fields: { isValid: boolean; fields: Fields }
+  fields: { isValid: boolean; fields: any }
   status: boolean
 }) =>
   compose(
@@ -25,9 +26,9 @@ export const updateField = ({
     )
   )(fields)
 
-export const validate = (fields: Fields): O =>
+export const validate = (fields: any): O =>
   Object.entries(fields).reduce(
-    (acc: any, [key, field]: [string, O]) => {
+    (acc: any, [key, field]: any) => {
       const status = validations[key] ? validations[key].run(field.value) : true
 
       return status
