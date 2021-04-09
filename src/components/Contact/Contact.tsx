@@ -3,6 +3,11 @@ import { Field, Form } from '../../elements'
 import { useFields } from '../../hooks'
 import useStyles from './useStyles'
 
+/**
+ * Render snackbar on response
+ * Render loading state
+ * */
+
 type Email = {
   name: string
   subject: string
@@ -47,6 +52,7 @@ export default function Contact() {
         .catch(console.error)
     }
   }
+
   return (
     <Box className={cls.formWrapper}>
       <Typography variant="h3" gutterBottom>
@@ -86,7 +92,6 @@ export default function Contact() {
           required
         />
       </Form>
-      <button onClick={resetFields}>reset</button>
     </Box>
   )
 }

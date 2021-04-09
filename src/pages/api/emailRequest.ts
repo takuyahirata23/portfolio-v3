@@ -30,11 +30,13 @@ export default (req: NextApiRequest, res: NextApiResponse) => {
 
   // @ts-ignore
   return Promise.all([sgMail.send(sender), sgMail.send(me)])
-    .then(() => res.json({ message: 'Thank you for reaching me out!' }))
-    .catch(error => {
-      console.error(error)
-      return res.json({
+    .then(() =>
+      res.json({ message: 'Thank you for reaching me out!', error: false })
+    )
+    .catch(() =>
+      res.json({
         message: 'Sorry, something went wrong. Please try it later.',
+        error: true,
       })
-    })
+    )
 }
