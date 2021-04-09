@@ -38,17 +38,17 @@ const emailRequest = (body: Email) =>
     body: JSON.stringify(body),
   })
 
+const toBody = (fields: Fields): Email =>
+  Object.entries(fields).reduce(
+    (acc: any, [key, { value }]) => mergeRight(acc, { [key]: value }),
+    {}
+  )
+
 export default function Contact() {
   const { fields, handleChange, validate, resetFields } = useFields(
     initialValues
   )
   const cls = useStyles()
-
-  const toBody = (fields: Fields): Email =>
-    Object.entries(fields).reduce(
-      (acc, [key, { value }]) => mergeRight(acc, { [key]: value }),
-      {}
-    )
 
   const onSubmit = (e: any) => {
     e.preventDefault()
