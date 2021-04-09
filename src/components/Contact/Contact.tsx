@@ -3,13 +3,6 @@ import { Field, Form } from '../../elements'
 import { useFields } from '../../hooks'
 import useStyles from './useStyles'
 
-// type IV = {
-//   name: string
-//   subject: string
-//   email: string
-//   message: string
-// }
-
 const initialValues = {
   name: '',
   subject: '',
@@ -18,49 +11,59 @@ const initialValues = {
 }
 
 export default function Contact() {
-  const { fields, handleChange } = useFields(initialValues)
+  const { fields, handleChange, validate, resetFields } = useFields(
+    initialValues
+  )
   const cls = useStyles()
-  const onSubmit = () => undefined
 
+  const onSubmit = (e: any) => {
+    e.preventDefault()
+    const res = validate()
+    if (res) {
+      console.log('lets go!')
+    }
+  }
+  console.log('render')
   return (
-    <Box className={cls.formWrapper} align="center">
+    <Box className={cls.formWrapper}>
       <Typography variant="h3" gutterBottom>
         Questions? Get in touch!
       </Typography>
       <Form onSubmit={onSubmit}>
         <Field
-          id="name"
           name="name"
-          value={fields.name}
           onChange={handleChange}
+          fromFields={fields.name}
           GridItemProps={{
             md: 6,
           }}
+          required
         />
         <Field
-          id="email"
           name="email"
-          value={fields.email}
+          fromFields={fields.email}
           onChange={handleChange}
           GridItemProps={{
             md: 6,
           }}
+          required
         />
         <Field
-          id="subject"
           name="subject"
-          value={fields.subject}
+          fromFields={fields.subject}
           onChange={handleChange}
+          required
         />
         <Field
-          id="message"
           name="message"
-          value={fields.message}
+          fromFields={fields.message}
           onChange={handleChange}
           rows={5}
           multiline
+          required
         />
       </Form>
+      <button onClick={resetFields}>reset</button>
     </Box>
   )
 }

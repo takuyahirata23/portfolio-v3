@@ -4,7 +4,7 @@ import useStyles from './useStyles'
 
 type Props = {
   children: React.ReactNode
-  onSubmit: () => void
+  onSubmit: (e: React.SyntheticEvent) => void
   buttonText?: string
 }
 
@@ -12,12 +12,12 @@ export default function Form({ buttonText, children, onSubmit }: Props) {
   const cls = useStyles()
 
   return (
-    <Grid container component="form" onSubmit={onSubmit} spacing={3}>
+    <Grid container component="form" onSubmit={onSubmit} spacing={1}>
       {children}
       <Grid item xs={12}>
         <Box className={cls.buttonWrapper}>
-          <Button variant="outlined" color="secondary" fullWidth>
-            {buttonText}
+          <Button type="submit" variant="outlined" color="secondary" fullWidth>
+            {buttonText}
           </Button>
         </Box>
       </Grid>
