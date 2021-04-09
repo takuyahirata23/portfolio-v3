@@ -11,12 +11,12 @@ const initialValues = {
 }
 
 export default function Contact() {
-  const { fields, handleChange } = useFields(initialValues)
+  const { fields, handleChange, validate } = useFields(initialValues)
   const cls = useStyles()
 
   const onSubmit = (e: any) => {
     e.preventDefault()
-    console.log(e)
+    validate() && console.log('lets go!')
   }
 
   return (
@@ -27,37 +27,38 @@ export default function Contact() {
       <Form onSubmit={onSubmit}>
         <Field
           name="name"
-          value={fields.name}
           onChange={handleChange}
+          fromFields={fields.name}
           GridItemProps={{
             md: 6,
           }}
-          required
-        />
-        <Field
-          name="email"
-          value={fields.email}
-          onChange={handleChange}
-          GridItemProps={{
-            md: 6,
-          }}
-          required
-        />
-        <Field
-          name="subject"
-          value={fields.subject}
-          onChange={handleChange}
-          required
-        />
-        <Field
-          name="message"
-          value={fields.message}
-          onChange={handleChange}
-          rows={5}
-          multiline
           required
         />
       </Form>
     </Box>
   )
 }
+
+// <Field
+//   name="email"
+//   value={fields.email}
+//   onChange={handleChange}
+//   GridItemProps={{
+//     md: 6,
+//   }}
+//   required
+// />
+// <Field
+//   name="subject"
+//   value={fields.subject}
+//   onChange={handleChange}
+//   required
+// />
+// <Field
+//   name="message"
+//   value={fields.message}
+//   onChange={handleChange}
+//   rows={5}
+//   multiline
+//   required
+// />
