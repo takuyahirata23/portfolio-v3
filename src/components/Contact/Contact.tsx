@@ -1,12 +1,19 @@
+import React from 'react'
+import { mergeRight } from 'ramda'
 import { Box, Typography } from '@material-ui/core'
-import { Field, Form } from '../../elements'
+import { Field, Form, SnackbarNotification } from '../../elements'
 import { useFields } from '../../hooks'
 import useStyles from './useStyles'
 
-/**
- * Render snackbar on response
- * Render loading state
- * */
+type Field = {
+  value: any
+  error: boolean
+  helperText: string
+}
+
+type Fields = {
+  [key: string]: Field
+}
 
 type Email = {
   name: string
@@ -37,16 +44,17 @@ export default function Contact() {
   )
   const cls = useStyles()
 
+  const toBody = (fields: Fields): Email =>
+    Object.entries(fields).reduce(
+      (acc, [key, { value }]) => mergeRight(acc, { [key]: value }),
+      {}
+    )
+
   const onSubmit = (e: any) => {
     e.preventDefault()
     const res = validate()
     if (res) {
-      emailRequest({
-        email: fields.email.value,
-        name: fields.name.value,
-        subject: fields.subject.value,
-        message: fields.message.value,
-      })
+      emailRequest(toBody(fields))
         .then(res => res.json())
         .then(console.log)
         .catch(console.error)
@@ -58,7 +66,7 @@ export default function Contact() {
       <Typography variant="h3" gutterBottom>
         Questions? Get in touch!
       </Typography>
-      <Form onSubmit={onSubmit}>
+      <Form onSubmit={onSubmit} buttonText="Send email">
         <Field
           name="name"
           onChange={handleChange}

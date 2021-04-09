@@ -6,9 +6,15 @@ type Props = {
   children: React.ReactNode
   onSubmit: (e: React.SyntheticEvent) => void
   buttonText?: string
+  disabled?: boolean
 }
 
-export default function Form({ buttonText, children, onSubmit }: Props) {
+export default function Form({
+  buttonText,
+  children,
+  onSubmit,
+  disabled,
+}: Props) {
   const cls = useStyles()
 
   return (
@@ -16,8 +22,14 @@ export default function Form({ buttonText, children, onSubmit }: Props) {
       {children}
       <Grid item xs={12}>
         <Box className={cls.buttonWrapper}>
-          <Button type="submit" variant="outlined" color="secondary" fullWidth>
-            {buttonText}
+          <Button
+            type="submit"
+            variant="outlined"
+            color="secondary"
+            fullWidth
+            disabled={disabled}
+          >
+            {buttonText}
           </Button>
         </Box>
       </Grid>
