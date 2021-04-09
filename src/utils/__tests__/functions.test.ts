@@ -1,4 +1,4 @@
-import { classNames, toLabel, isScrollYZero } from './functions'
+import { classNames, toLabel, isScrollYZero } from '../functions'
 
 describe('classNames', () => {
   test('should concat classNames', () => {
