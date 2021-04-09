@@ -1,4 +1,5 @@
 import { O } from '../utils/types'
+
 export default function emailNotification({
   name,
   email,
@@ -8,7 +9,7 @@ export default function emailNotification({
 }: O) {
   return `
   <div>
-    <h1>${name} has sent email at ${createdAt}</h1> 
+    <h1>${name} has sent you an email at ${createdAt}</h1> 
     <h2>Preview</h2>
     <div>
       <p><string>Name</string>: ${name}</p>

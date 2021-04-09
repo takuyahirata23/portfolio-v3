@@ -3,6 +3,13 @@ import { Field, Form } from '../../elements'
 import { useFields } from '../../hooks'
 import useStyles from './useStyles'
 
+type Email = {
+  name: string
+  subject: string
+  email: string
+  message: string
+}
+
 const initialValues = {
   name: '',
   subject: '',
@@ -10,7 +17,7 @@ const initialValues = {
   message: '',
 }
 
-const emailRequest = body =>
+const emailRequest = (body: Email) =>
   fetch('/api/emailRequest', {
     method: 'POST',
     headers: {
