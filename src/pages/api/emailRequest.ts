@@ -6,16 +6,32 @@ export default (req: NextApiRequest, res: NextApiResponse) => {
   sgMail.setApiKey(process.env.SENDGRID_API_KEY || '')
 
   const { email, name, subject, message } = req.body
-  const msg = {
+  const sender = {
     to: email,
     from: 'takuya.hirata@dcmail.ca',
     subject,
     html: toSender(name),
   }
 
-  sgMail
-    .send(msg)
-    .then(() => console.log('email sent'))
-    .catch(e => console.error(e.response.body.errors))
-  res.json({ message: 'good' })
+  const me = {
+    to: 'takuyahirata4@gmail.com',
+    from: 'takuya.hirata@dcmail.ca',
+    subject: 'New email from portfolio site',
+    html: emailNotification({
+      name,
+      email,
+      subject,
+      message,
+      createdAt: new Intl.DateTimeFormat('en-US', { dateStyle: 'full' }).format(
+        new Date()
+      ),
+    }),
+  }
+
+  return Promise.all([sgMail.send(sender), sgMail.send(me)])
+    .then(() => res.json({ message: 'Thank you for reacing me out!' }))
+    .catch(error => {
+      console.error(error.response.body)
+      res.json({ message: 'Sorry, something went wrong. Please try it later.' })
+    })
 }
