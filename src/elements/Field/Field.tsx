@@ -6,35 +6,35 @@ type GridItemProps = {
   [key: string]: any
 }
 
+type Field = {
+  value: string
+  helperText: string
+  error: boolean
+}
+
 type Props = {
   name: string
-  //value: string
   onChange: (e: React.ChangeEvent<HTMLInputElement>) => void
-  fromFields: any
+  fromFields: Field
   type?: string
   label?: string
   GridItemProps?: GridItemProps
   rows?: number
   multiline?: boolean
   required?: boolean
-  //error?: boolean
-  //helperText?: string
 }
 
 export default function Field({
   name,
   type,
   fromFields,
-  //value,
   label,
   onChange,
   GridItemProps,
   rows,
   multiline,
   required,
-}: //helperText,
-//error,
-Props) {
+}: Props) {
   return (
     <Grid item xs={12} {...GridItemProps}>
       <TextField
@@ -42,11 +42,8 @@ Props) {
         label={label || toLabel(name)}
         name={name}
         {...fromFields}
-        //value={value}
         onChange={onChange}
         type={type}
-        //error={error}
-        //helperText={helperText}
         multiline={multiline}
         rows={rows}
         variant="outlined"
