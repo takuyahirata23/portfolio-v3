@@ -10,6 +10,15 @@ const initialValues = {
   message: '',
 }
 
+const emailRequest = body =>
+  fetch('/api/emailRequest', {
+    method: 'POST',
+    headers: {
+      'Content-Type': 'application/json',
+    },
+    body: JSON.stringify(body),
+  })
+
 export default function Contact() {
   const { fields, handleChange, validate, resetFields } = useFields(
     initialValues
@@ -20,10 +29,17 @@ export default function Contact() {
     e.preventDefault()
     const res = validate()
     if (res) {
-      console.log('lets go!')
+      emailRequest({
+        email: fields.email.value,
+        name: fields.name.value,
+        subject: fields.subject.value,
+        message: fields.message.value,
+      })
+        .then(res => res.json())
+        .then(console.log)
+        .catch(console.error)
     }
   }
-  console.log('render')
   return (
     <Box className={cls.formWrapper}>
       <Typography variant="h3" gutterBottom>
