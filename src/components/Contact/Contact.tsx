@@ -22,6 +22,12 @@ type Email = {
   message: string
 }
 
+type snackbarProps = {
+  status: 'success' | 'error'
+  showSnackbar: boolean
+  message: string
+}
+
 const initialValues = {
   name: '',
   subject: '',
@@ -44,7 +50,15 @@ const toBody = (fields: Fields): Email =>
     {}
   )
 
+const snackBarDefault: snackbarProps = {
+  status: 'success',
+  showSnackbar: false,
+  message: '',
+}
+
 export default function Contact() {
+  const [snackBarProps, setSnackbarProps] = React.useState(snackBarDefault)
+  const [isLoading, setIsLoading] = React.useState(false)
   const { fields, handleChange, validate, resetFields } = useFields(
     initialValues
   )
@@ -52,12 +66,32 @@ export default function Contact() {
 
   const onSubmit = (e: any) => {
     e.preventDefault()
+
+    const updateState = ({
+      message,
+      error,
+    }: {
+      message: string
+      error: boolean
+    }) => {
+      setSnackbarProps({
+        message,
+        showSnackbar: true,
+        status: error ? 'error' : 'success',
+      })
+    }
+
     const res = validate()
     if (res) {
+      setIsLoading(true)
       emailRequest(toBody(fields))
         .then(res => res.json())
-        .then(console.log)
-        .catch(console.error)
+        .then(updateState)
+        .catch(updateState)
+        .finally(() => {
+          setTimeout(() => setSnackbarProps(snackBarDefault), 3000)
+          setIsLoading(false)
+        })
     }
   }
 
@@ -66,7 +100,12 @@ export default function Contact() {
       <Typography variant="h3" gutterBottom>
         Questions? Get in touch!
       </Typography>
-      <Form onSubmit={onSubmit} buttonText="Send email">
+      <Form
+        onSubmit={onSubmit}
+        buttonText="Send email"
+        isLoading={isLoading}
+        {...snackBarProps}
+      >
         <Field
           name="name"
           onChange={handleChange}

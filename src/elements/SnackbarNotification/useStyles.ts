@@ -6,13 +6,13 @@ export default makeStyles(({ breakpoints, palette, typography }) => ({
     [breakpoints.up('md')]: {
       display: 'flex',
       alignItems: 'center',
-      fotSize: '1rem',
+      fontSize: '1rem',
     },
     [breakpoints.up('lg')]: {
-      fotSize: '1.2rem',
+      fontSize: '1.2rem',
     },
     [breakpoints.up('xl')]: {
-      fotSize: '1.2rem',
+      fontSize: '1.2rem',
     },
   },
   span: {

@@ -4,11 +4,11 @@ import useStyles from './useStyles'
 
 type Props = {
   open: boolean
-  messgae: string
+  message: string
   status: 'success' | 'error'
 }
 
-export default function SnackbarNotification({ open, message, status }) {
+export default function SnackbarNotification({ open, message, status }: Props) {
   const cls = useStyles()
   return (
     <Snackbar
