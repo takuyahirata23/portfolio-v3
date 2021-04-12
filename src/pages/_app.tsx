@@ -1,8 +1,8 @@
 import { useEffect } from 'react'
 import Head from 'next/head'
 import { ThemeProvider } from '@material-ui/core'
-import { darkTheme } from '../src/utils/theme'
-import '../src/styles/globals.css'
+import { darkTheme } from '../utils/theme'
+import '../styles/globals.css'
 
 function MyApp({ Component, pageProps }: any) {
   useEffect(() => {

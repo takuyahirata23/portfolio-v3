@@ -1,5 +1,5 @@
 import { Typography } from '@material-ui/core'
-import { Divider, Layout } from '../src/elements'
+import { Divider, Layout } from '../elements'
 
 export default function Work() {
   return (
