@@ -13,6 +13,7 @@
     "@material-ui/icons": "^4.11.2",
     "@material-ui/lab": "^4.0.0-alpha.57",
     "@sendgrid/mail": "^7.4.2",
+    "axios": "^0.21.1",
     "fp-ts": "^2.9.5",
     "fts-utils": "^1.0.9",
     "next": "10.1.3",

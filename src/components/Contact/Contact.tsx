@@ -1,4 +1,7 @@
 import React from 'react'
+import * as E from 'fp-ts/Either'
+import * as TE from 'fp-ts/TaskEither'
+import axios from 'axios'
 import { mergeRight } from 'ramda'
 import { Box, Typography } from '@material-ui/core'
 import { Field, Form, SnackbarNotification } from '../../elements'
@@ -35,14 +38,7 @@ const initialValues = {
   message: '',
 }
 
-const requestEmail = (body: Email) =>
-  fetch('/api/emailRequest', {
-    method: 'POST',
-    headers: {
-      'Content-Type': 'application/json',
-    },
-    body: JSON.stringify(body),
-  })
+const requestEmail = (body: Email) => axios.post('/api/emailRequest', body)
 
 const snackBarDefault: snackbarProps = {
   status: 'success',
@@ -51,29 +47,25 @@ const snackBarDefault: snackbarProps = {
 }
 
 export default function Contact() {
-  const [snackBarProps, setSnackbarProps] = React.useState(snackBarDefault)
-  const [isLoading, setIsLoading] = React.useState(false)
-  const { fields, handleChange, validate, resetFields } = useFields(
-    initialValues
-  )
+  const { fields, handleChange, validate } = useFields(initialValues)
   const cls = useStyles()
 
-  const onSubmit = () => {
-    const res = validate()
-    return res ? () => requestEmail(fields) : null
-  }
+  const onSubmit = () =>
+    validate()
+      ? E.right(
+          TE.tryCatch(
+            () => requestEmail(fields),
+            () => ({ error: true, message: 'boo' })
+          )
+        )
+      : E.left(null)
 
   return (
     <Box className={cls.formWrapper}>
       <Typography variant="h3" gutterBottom>
         Questions? Get in touch!
       </Typography>
-      <Form
-        onSubmit={onSubmit}
-        buttonText="Send email"
-        isLoading={isLoading}
-        {...snackBarProps}
-      >
+      <Form onSubmit={onSubmit} buttonText="Send email">
         <Field
           name="name"
           onChange={handleChange}

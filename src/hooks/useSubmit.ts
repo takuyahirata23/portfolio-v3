@@ -1,5 +1,8 @@
 import React from 'react'
 import type { O } from '../utils/types'
+import * as E from 'fp-ts/Either'
+import { pipe } from 'fp-ts/function'
+import { identity } from 'ramda'
 
 type Dv = {
   error: boolean
@@ -13,11 +16,13 @@ const dv = {
   data: null,
 }
 
-export default function useSubmit(submitF) {
+export default function useSubmit(submitF: () => () => Promise<any>) {
   const [isLoading, setIsLoading] = React.useState(false)
   const [res, setRes] = React.useState(dv)
 
-  const updateState = ({ message, error, data = null }) => {
+  const updateState = ({ data: { message, error, data = null } }: O) => {
+    setTimeout(() => setRes(dv), 3000)
+    setIsLoading(false)
     setRes({
       message,
       error,
@@ -28,19 +33,12 @@ export default function useSubmit(submitF) {
   const handleSubmit = (e: React.SyntheticEvent) => {
     e.preventDefault()
 
-    const fn = submitF()
+    setIsLoading(true)
 
-    if (fn) {
-      setIsLoading(true)
-      fn()
-        .then((res: O) => res.json())
-        .then(updateState)
-        .catch(updateState)
-        .finally(() => {
-          setTimeout(() => setRes(dv), 3000)
-          setIsLoading(false)
-        })
-    }
+    pipe(
+      submitF(),
+      E.fold(identity, te => te().then(E.fold(updateState, updateState)))
+    )
   }
 
   return {

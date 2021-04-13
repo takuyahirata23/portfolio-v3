@@ -1,4 +1,5 @@
 import React from 'react'
+import type { taskEither } from 'fp-ts'
 import { Button, Box, Grid, LinearProgress } from '@material-ui/core'
 import { useSubmit } from '../../hooks'
 import SnackbarNotification from '../SnackbarNotification'
@@ -6,12 +7,8 @@ import useStyles from './useStyles'
 
 type Props = {
   children: React.ReactNode
-  onSubmit: (e: React.SyntheticEvent) => void
+  onSubmit: any
   buttonText?: string
-  isLoading?: boolean
-  showSnackbar: boolean
-  message: string
-  status: 'success' | 'error'
 }
 
 export default function Form({ buttonText, children, onSubmit }: Props) {
