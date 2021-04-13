@@ -35,7 +35,7 @@ const initialValues = {
   message: '',
 }
 
-const emailRequest = (body: Email) =>
+const requestEmail = (body: Email) =>
   fetch('/api/emailRequest', {
     method: 'POST',
     headers: {
@@ -43,12 +43,6 @@ const emailRequest = (body: Email) =>
     },
     body: JSON.stringify(body),
   })
-
-const toBody = (fields: Fields): Email =>
-  Object.entries(fields).reduce(
-    (acc: any, [key, { value }]) => mergeRight(acc, { [key]: value }),
-    {}
-  )
 
 const snackBarDefault: snackbarProps = {
   status: 'success',
@@ -64,35 +58,9 @@ export default function Contact() {
   )
   const cls = useStyles()
 
-  const onSubmit = (e: any) => {
-    e.preventDefault()
-
-    const updateState = ({
-      message,
-      error,
-    }: {
-      message: string
-      error: boolean
-    }) => {
-      setSnackbarProps({
-        message,
-        showSnackbar: true,
-        status: error ? 'error' : 'success',
-      })
-    }
-
+  const onSubmit = () => {
     const res = validate()
-    if (res) {
-      setIsLoading(true)
-      emailRequest(toBody(fields))
-        .then(res => res.json())
-        .then(updateState)
-        .catch(updateState)
-        .finally(() => {
-          setTimeout(() => setSnackbarProps(snackBarDefault), 3000)
-          setIsLoading(false)
-        })
-    }
+    return res ? () => requestEmail(fields) : null
   }
 
   return (
