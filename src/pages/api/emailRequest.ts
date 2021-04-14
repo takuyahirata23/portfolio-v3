@@ -30,7 +30,7 @@ export default (req: NextApiRequest, res: NextApiResponse) => {
 
   // @ts-ignore
   //return Promise.all([sgMail.send(sender), sgMail.send(me)])
-  return new Promise(resolve => setTimeout(() => resolve(''), 4000))
+  return new Promise((resolve, reject) => setTimeout(() => reject(''), 4000))
     .then(() =>
       res.json({ message: 'Thank you for reaching me out!', error: false })
     )
