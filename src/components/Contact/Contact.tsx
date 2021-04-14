@@ -6,23 +6,7 @@ import { Box, Typography } from '@material-ui/core'
 import { Field, Form } from '../../elements'
 import { useFields } from '../../hooks'
 import useStyles from './useStyles'
-
-type Field = {
-  value: any
-  error: boolean
-  helperText: string
-}
-
-type Fields = {
-  [key: string]: Field
-}
-
-type Email = {
-  name: string
-  subject: string
-  email: string
-  message: string
-}
+import type { Fields, Email } from './types'
 
 const initialValues = {
   name: '',
@@ -31,13 +15,21 @@ const initialValues = {
   message: '',
 }
 
+const generateError = () => ({
+  data: {
+    error: true,
+    message: 'Sorry. Please try this later.',
+  },
+})
+
 const toEmailShape = (fields: Fields): any =>
   Object.entries(fields).reduce(
     (acc, [key, { value }]) => Object.assign(acc, { [key]: value }),
     {}
   )
 
-const requestEmail = (body: Email) => axios.post('/api/emailRequest', body)
+const requestEmail = (body: Email) => () =>
+  axios.post('/api/emailRequest', body)
 
 export default function Contact() {
   const { fields, handleChange, validate } = useFields(initialValues)
@@ -45,17 +37,7 @@ export default function Contact() {
 
   const onSubmit = () =>
     validate()
-      ? E.right(
-          TE.tryCatch(
-            () => requestEmail(toEmailShape(fields)),
-            () => ({
-              data: {
-                error: true,
-                message: 'Sorry. Please try this later.',
-              },
-            })
-          )
-        )
+      ? E.right(TE.tryCatch(requestEmail(toEmailShape(fields)), generateError))
       : E.left(null)
 
   return (

@@ -1,5 +1,4 @@
 import React from 'react'
-import type { taskEither } from 'fp-ts'
 import { Button, Box, Grid, LinearProgress } from '@material-ui/core'
 import { useSubmit } from '../../hooks'
 import SnackbarNotification from '../SnackbarNotification'
