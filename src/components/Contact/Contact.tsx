@@ -1,10 +1,9 @@
 import React from 'react'
+import axios from 'axios'
 import * as E from 'fp-ts/Either'
 import * as TE from 'fp-ts/TaskEither'
-import axios from 'axios'
-import { mergeRight } from 'ramda'
 import { Box, Typography } from '@material-ui/core'
-import { Field, Form, SnackbarNotification } from '../../elements'
+import { Field, Form } from '../../elements'
 import { useFields } from '../../hooks'
 import useStyles from './useStyles'
 
@@ -25,12 +24,6 @@ type Email = {
   message: string
 }
 
-type snackbarProps = {
-  status: 'success' | 'error'
-  showSnackbar: boolean
-  message: string
-}
-
 const initialValues = {
   name: '',
   subject: '',
@@ -38,13 +31,13 @@ const initialValues = {
   message: '',
 }
 
-const requestEmail = (body: Email) => axios.post('/api/emailRequest', body)
+const toEmailShape = (fields: Fields): any =>
+  Object.entries(fields).reduce(
+    (acc, [key, { value }]) => Object.assign(acc, { [key]: value }),
+    {}
+  )
 
-const snackBarDefault: snackbarProps = {
-  status: 'success',
-  showSnackbar: false,
-  message: '',
-}
+const requestEmail = (body: Email) => axios.post('/api/emailRequest', body)
 
 export default function Contact() {
   const { fields, handleChange, validate } = useFields(initialValues)
@@ -54,8 +47,13 @@ export default function Contact() {
     validate()
       ? E.right(
           TE.tryCatch(
-            () => requestEmail(fields),
-            () => ({ error: true, message: 'boo' })
+            () => requestEmail(toEmailShape(fields)),
+            () => ({
+              data: {
+                error: true,
+                message: 'Sorry. Please try this later.',
+              },
+            })
           )
         )
       : E.left(null)

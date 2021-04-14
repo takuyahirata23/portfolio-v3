@@ -4,19 +4,13 @@ import * as E from 'fp-ts/Either'
 import { pipe } from 'fp-ts/function'
 import { identity } from 'ramda'
 
-type Dv = {
-  error: boolean
-  message: string
-  data: any
-}
-
 const dv = {
   error: false,
   message: '',
   data: null,
 }
 
-export default function useSubmit(submitF: () => () => Promise<any>) {
+export default function useSubmit(submitF: () => any) {
   const [isLoading, setIsLoading] = React.useState(false)
   const [res, setRes] = React.useState(dv)
 
@@ -33,11 +27,12 @@ export default function useSubmit(submitF: () => () => Promise<any>) {
   const handleSubmit = (e: React.SyntheticEvent) => {
     e.preventDefault()
 
-    setIsLoading(true)
-
     pipe(
       submitF(),
-      E.fold(identity, te => te().then(E.fold(updateState, updateState)))
+      E.fold(identity, (te: () => Promise<any>) => {
+        setIsLoading(true)
+        te().then(E.fold(updateState, updateState))
+      })
     )
   }
 
