@@ -1,8 +1,10 @@
+//@ts-nocheck
 import type { NextApiRequest, NextApiResponse } from 'next'
 import sgMail from '@sendgrid/mail'
 import * as E from 'fp-ts/Either'
 import * as TE from 'fp-ts/TaskEither'
-import { array, task, pipe } from 'fp-ts'
+import { array, task } from 'fp-ts'
+import { pipe } from 'fp-ts/function'
 import { emailNotification, toSender } from '../../emailTemplates'
 import type { O } from '../../utils/types'
 
@@ -11,14 +13,14 @@ export default (req: NextApiRequest, res: NextApiResponse) => {
 
   const { email, name, subject, message } = req.body
 
-  const sender = {
+  const sender: O = {
     to: email,
     from: process.env.DCMAIL,
     subject,
     html: toSender(name),
   }
 
-  const me = {
+  const me: O = {
     to: process.env.GMAIL,
     from: process.env.DCMAIL,
     subject: 'New email from portfolio site',
@@ -56,17 +58,4 @@ export default (req: NextApiRequest, res: NextApiResponse) => {
           res.json({ message: 'Thank you for reaching me out!', error: false })
       )
     )
-
-  // @ts-ignore
-  //return Promise.all([sgMail.send(sender), sgMail.send(me)])
-  // return new Promise((resolve, reject) => setTimeout(() => reject(''), 4000))
-  //   .then(() =>
-  //     res.json({ message: 'Thank you for reaching me out!', error: false })
-  //   )
-  //   .catch(() =>
-  //     res.json({
-  //       message: 'Sorry, something went wrong. Please try it later.',
-  //       error: true,
-  //     })
-  //   )
 }
