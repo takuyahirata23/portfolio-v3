@@ -1,32 +1,12 @@
 import React from 'react'
-import { mergeRight } from 'ramda'
+import axios from 'axios'
+import * as E from 'fp-ts/Either'
+import * as TE from 'fp-ts/TaskEither'
 import { Box, Typography } from '@material-ui/core'
-import { Field, Form, SnackbarNotification } from '../../elements'
+import { Field, Form } from '../../elements'
 import { useFields } from '../../hooks'
 import useStyles from './useStyles'
-
-type Field = {
-  value: any
-  error: boolean
-  helperText: string
-}
-
-type Fields = {
-  [key: string]: Field
-}
-
-type Email = {
-  name: string
-  subject: string
-  email: string
-  message: string
-}
-
-type snackbarProps = {
-  status: 'success' | 'error'
-  showSnackbar: boolean
-  message: string
-}
+import type { Fields, Email } from './types'
 
 const initialValues = {
   name: '',
@@ -35,77 +15,37 @@ const initialValues = {
   message: '',
 }
 
-const emailRequest = (body: Email) =>
-  fetch('/api/emailRequest', {
-    method: 'POST',
-    headers: {
-      'Content-Type': 'application/json',
-    },
-    body: JSON.stringify(body),
-  })
+const generateError = () => ({
+  data: {
+    error: true,
+    message: 'Sorry. Please try this later.',
+  },
+})
 
-const toBody = (fields: Fields): Email =>
+const toEmailShape = (fields: Fields): any =>
   Object.entries(fields).reduce(
-    (acc: any, [key, { value }]) => mergeRight(acc, { [key]: value }),
+    (acc, [key, { value }]) => Object.assign(acc, { [key]: value }),
     {}
   )
 
-const snackBarDefault: snackbarProps = {
-  status: 'success',
-  showSnackbar: false,
-  message: '',
-}
+const requestEmail = (body: Email) => () =>
+  axios.post('/api/emailRequest', body)
 
 export default function Contact() {
-  const [snackBarProps, setSnackbarProps] = React.useState(snackBarDefault)
-  const [isLoading, setIsLoading] = React.useState(false)
-  const { fields, handleChange, validate, resetFields } = useFields(
-    initialValues
-  )
+  const { fields, handleChange, validate } = useFields(initialValues)
   const cls = useStyles()
 
-  const onSubmit = (e: any) => {
-    e.preventDefault()
-
-    const updateState = ({
-      message,
-      error,
-    }: {
-      message: string
-      error: boolean
-    }) => {
-      setSnackbarProps({
-        message,
-        showSnackbar: true,
-        status: error ? 'error' : 'success',
-      })
-    }
-
-    const res = validate()
-    if (res) {
-      setIsLoading(true)
-      emailRequest(toBody(fields))
-        .then(res => res.json())
-        .then(updateState)
-        .catch(updateState)
-        .finally(() => {
-          setTimeout(() => setSnackbarProps(snackBarDefault), 3000)
-          setIsLoading(false)
-        })
-    }
-  }
+  const onSubmit = () =>
+    validate()
+      ? E.right(TE.tryCatch(requestEmail(toEmailShape(fields)), generateError))
+      : E.left(null)
 
   return (
     <Box className={cls.formWrapper}>
       <Typography variant="h3" gutterBottom>
         Questions? Get in touch!
       </Typography>
-      <Form
-        onSubmit={onSubmit}
-        buttonText="Send email"
-        isLoading={isLoading}
-        {...snackBarProps}
-      >
+      <Form onSubmit={onSubmit} buttonText="Send email">
         <Field
           name="name"
           onChange={handleChange}

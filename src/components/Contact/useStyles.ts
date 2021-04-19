@@ -14,5 +14,9 @@ export default makeStyles(({ breakpoints, spacing }) => ({
     [breakpoints.up('lg')]: {
       marginTop: spacing(15),
     },
+
+    '& > h3': {
+      marginBottom: spacing(3),
+    },
   },
 }))

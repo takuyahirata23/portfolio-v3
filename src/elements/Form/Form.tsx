@@ -1,27 +1,17 @@
 import React from 'react'
 import { Button, Box, Grid, LinearProgress } from '@material-ui/core'
+import { useSubmit } from '../../hooks'
 import SnackbarNotification from '../SnackbarNotification'
 import useStyles from './useStyles'
 
 type Props = {
   children: React.ReactNode
-  onSubmit: (e: React.SyntheticEvent) => void
+  onSubmit: any
   buttonText?: string
-  isLoading?: boolean
-  showSnackbar: boolean
-  message: string
-  status: 'success' | 'error'
 }
 
-export default function Form({
-  buttonText,
-  children,
-  onSubmit,
-  showSnackbar,
-  message,
-  status,
-  isLoading,
-}: Props) {
+export default function Form({ buttonText, children, onSubmit }: Props) {
+  const { error, isLoading, message, handleSubmit } = useSubmit(onSubmit)
   const cls = useStyles()
 
   return (
@@ -32,11 +22,11 @@ export default function Form({
         />
       )}
       <SnackbarNotification
-        open={showSnackbar}
+        open={Boolean(message)}
         message={message}
-        status={status}
+        status={error ? 'error' : 'success'}
       />
-      <Grid container component="form" onSubmit={onSubmit} spacing={1}>
+      <Grid container component="form" onSubmit={handleSubmit} spacing={1}>
         {children}
         <Grid item xs={12}>
           <Box className={cls.buttonWrapper}>
