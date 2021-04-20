@@ -16,7 +16,7 @@ export default function useSubmit(submitF: () => any) {
   const [res, setRes] = React.useState(dv)
 
   const updateState = ({ data: { message, error, data = null } }: O) => {
-    setTimeout(() => setRes(dv), 3000)
+    setTimeout(() => setRes(dv), 5000)
     setStatus(error ? 'error' : 'success')
     setRes({
       message,

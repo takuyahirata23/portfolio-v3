@@ -4,6 +4,7 @@ export default makeStyles(({ breakpoints, spacing }) => ({
   formWrapper: {
     margin: '0 auto',
     marginTop: spacing(5),
+    paddingBottom: spacing(5),
     [breakpoints.up('sm')]: {
       width: '90%',
     },
