@@ -19,7 +19,12 @@ export default function Profile() {
   const alignment = align(isGreaterThanSm)
 
   return (
-    <Grid container justify="center" alignItems="center">
+    <Grid
+      container
+      justify="center"
+      alignItems="center"
+      className={cls.container}
+    >
       <Grid item xs={12} md={4} lg={4}>
         <Box className={cls.imgWrapper}>
           <Image
@@ -46,7 +51,7 @@ export default function Profile() {
         <Grid item xs={12}>
           <Typography color="textSecondary" paragraph align={alignment}>
             Motivated software engineer based in Toronto. <br />
-            Feel free to check some of my npm packages{' '}
+            Feel free to check my repositories or my npm packages{' '}
             <a
               href="https://www.npmjs.com/~h.takuya"
               target="_blank"

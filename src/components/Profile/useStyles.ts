@@ -1,6 +1,9 @@
 import makeStyles from '@material-ui/core/styles/makeStyles'
 
 export default makeStyles(({ breakpoints, spacing, palette, typography }) => ({
+  container: {
+    paddingTop: spacing(5),
+  },
   imgWrapper: {
     width: 150,
     height: 150,
