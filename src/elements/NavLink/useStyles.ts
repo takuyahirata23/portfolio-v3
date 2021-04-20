@@ -1,7 +1,7 @@
 import makeStyles from '@material-ui/core/styles/makeStyles'
 
 export default makeStyles(({ palette }) => ({
-  link: ({ isActive }) => ({
+  link: ({ isActive }: { isActive: boolean }) => ({
     display: 'block',
     padding: '.5rem',
     color: isActive ? palette.text.secondary : palette.text.primary,

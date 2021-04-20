@@ -1,7 +1,7 @@
 import React from 'react'
 import { lensPath, set } from 'ramda'
 import { validate as runValidation } from '../utils/validation'
-import { O } from '../utils/types'
+import type { O } from '../utils/types'
 
 type Field = {
   value: any
