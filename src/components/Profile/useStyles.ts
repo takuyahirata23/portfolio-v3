@@ -3,12 +3,15 @@ import makeStyles from '@material-ui/core/styles/makeStyles'
 export default makeStyles(({ breakpoints, spacing, palette, typography }) => ({
   container: {
     paddingTop: spacing(5),
+    [breakpoints.up('md')]: {
+      paddingTop: spacing(10),
+    },
   },
   imgWrapper: {
     width: 150,
     height: 150,
     margin: `0 auto`,
-    marginBottom: spacing(4),
+    marginBottom: spacing(5),
     overflow: 'hidden',
     borderRadius: '50%',
     border: `3px solid ${palette.primary.main}`,
