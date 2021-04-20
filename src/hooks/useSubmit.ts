@@ -5,21 +5,21 @@ import { pipe } from 'fp-ts/function'
 import { identity } from 'ramda'
 
 const dv = {
-  error: false,
   message: '',
   data: null,
 }
 
+type Status = 'idle' | 'fetching' | 'success' | 'error'
+
 export default function useSubmit(submitF: () => any) {
-  const [isLoading, setIsLoading] = React.useState(false)
+  const [status, setStatus] = React.useState<Status>('idle')
   const [res, setRes] = React.useState(dv)
 
   const updateState = ({ data: { message, error, data = null } }: O) => {
     setTimeout(() => setRes(dv), 3000)
-    setIsLoading(false)
+    setStatus(error ? 'error' : 'success')
     setRes({
       message,
-      error,
       data,
     })
   }
@@ -30,14 +30,16 @@ export default function useSubmit(submitF: () => any) {
     pipe(
       submitF(),
       E.fold(identity, (te: () => Promise<any>) => {
-        setIsLoading(true)
+        setStatus('fetching')
         te().then(E.fold(updateState, updateState))
       })
     )
+
+    setTimeout(() => setStatus('idle'), 3000)
   }
 
   return {
-    isLoading,
+    status,
     handleSubmit,
     ...res,
   }

@@ -4,9 +4,10 @@ import * as E from 'fp-ts/Either'
 import * as TE from 'fp-ts/TaskEither'
 import { Box, Typography } from '@material-ui/core'
 import { Field, Form } from '../../elements'
-import { useFields } from '../../hooks'
+import { useFields, useSubmit } from '../../hooks'
 import useStyles from './useStyles'
 import type { Fields, Email } from './types'
+import { O } from '../../utils/types'
 
 const initialValues = {
   name: '',
@@ -31,21 +32,37 @@ const toEmailShape = (fields: Fields): any =>
 const requestEmail = (body: Email) => () =>
   axios.post('/api/emailRequest', body)
 
+const onSubmit = (validate: () => boolean, fields: O) => () =>
+  validate()
+    ? E.right(TE.tryCatch(requestEmail(toEmailShape(fields)), generateError))
+    : E.left(null)
+
 export default function Contact() {
-  const { fields, handleChange, validate } = useFields(initialValues)
+  const { fields, handleChange, validate, resetFields } = useFields(
+    initialValues
+  )
+  const { status, message, handleSubmit } = useSubmit(
+    onSubmit(validate, fields)
+  )
   const cls = useStyles()
 
-  const onSubmit = () =>
-    validate()
-      ? E.right(TE.tryCatch(requestEmail(toEmailShape(fields)), generateError))
-      : E.left(null)
+  React.useEffect(() => {
+    if (status === 'success') {
+      resetFields()
+    }
+  }, [status])
 
   return (
     <Box className={cls.formWrapper}>
       <Typography variant="h3" gutterBottom>
         Questions? Get in touch!
       </Typography>
-      <Form onSubmit={onSubmit} buttonText="Send email">
+      <Form
+        onSubmit={handleSubmit}
+        buttonText="Send email"
+        status={status}
+        message={message}
+      >
         <Field
           name="name"
           onChange={handleChange}
