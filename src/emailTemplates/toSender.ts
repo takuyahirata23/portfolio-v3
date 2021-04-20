@@ -1,4 +1,4 @@
-export default function toSender(name) {
+export default function toSender(name: string) {
   return `
   <div>
      <p>Hi, ${name}</p>
