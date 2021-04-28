@@ -17,7 +17,7 @@ export type ThemeContext = {
 export const ThemeContext = React.createContext<{ [key: string]: any }>()
 
 export default function ThemeProvider({ children }: Props) {
-  const [theme, setTheme] = React.useState<'dark' | 'light'>('dark')
+  const [theme, setTheme] = React.useState('dark')
   const toggleTheme = () =>
     setTheme(theme => (theme === 'dark' ? 'light' : 'dark'))
 
