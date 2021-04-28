@@ -1,7 +1,8 @@
 import React from 'react'
-import { Box, Switch } from '@material-ui/core'
+import { Box } from '@material-ui/core'
 import { Brightness4, WbIncandescent } from '@material-ui/icons'
 import { Logo } from '../../elements'
+import { Switch } from '../../components'
 import { isScrollYZero } from '../../utils/functions'
 import { ThemeContext } from '../ThemeProvider/ThemeProvider'
 import useStyles from './useStyles'
@@ -9,22 +10,9 @@ import useStyles from './useStyles'
 export default function Header() {
   const { theme, toggleTheme } = React.useContext<any>(ThemeContext)
   const [isTop, setIsTop] = React.useState(true)
-  const [checked, setChecked] = React.useState(theme !== 'dark')
   const cls = useStyles({ isTop })
 
-  const handleToggle = () => setChecked(cur => !cur)
-  let ref = React.useRef(false)
-
   React.useEffect(() => {
-    if (!ref.current) {
-      ref.current = true
-    } else {
-      toggleTheme()
-    }
-  }, [checked])
-
-  React.useEffect(() => {
-    //@ts-ignore
     const handleScroll = () => setIsTop(isScrollYZero(window))
 
     window.addEventListener('scroll', handleScroll)
@@ -32,6 +20,8 @@ export default function Header() {
       window.removeEventListener('scroll', handleScroll)
     }
   }, [])
+
+  console.log(theme)
 
   return (
     <Box
@@ -41,11 +31,12 @@ export default function Header() {
       bgcolor="background.default"
     >
       <Logo />
-      <Box display="flex" alignItems="center">
-        <Brightness4 />
-        <Switch checked={checked} onChange={handleToggle} />
-        <WbIncandescent />
-      </Box>
+      <Switch
+        defaultValue={theme !== 'dark'}
+        updater={toggleTheme}
+        Left={<Brightness4 />}
+        Right={<WbIncandescent />}
+      />
     </Box>
   )
 }
