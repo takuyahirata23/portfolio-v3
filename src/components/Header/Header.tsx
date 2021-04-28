@@ -1,15 +1,18 @@
 import React from 'react'
 import { Box } from '@material-ui/core'
-import useStyles from './useStyles'
+import { Brightness4, WbIncandescent } from '@material-ui/icons'
 import { Logo } from '../../elements'
+import { Switch } from '../../components'
 import { isScrollYZero } from '../../utils/functions'
+import { ThemeContext } from '../ThemeProvider/ThemeProvider'
+import useStyles from './useStyles'
 
 export default function Header() {
+  const { theme, toggleTheme } = React.useContext<any>(ThemeContext)
   const [isTop, setIsTop] = React.useState(true)
   const cls = useStyles({ isTop })
 
   React.useEffect(() => {
-    //@ts-ignore
     const handleScroll = () => setIsTop(isScrollYZero(window))
 
     window.addEventListener('scroll', handleScroll)
@@ -18,16 +21,22 @@ export default function Header() {
     }
   }, [])
 
+  console.log(theme)
+
   return (
     <Box
       component="header"
-      display="flex"
-      justifyContent="space-between"
       p={[2, 2, 4]}
       className={cls.header}
       bgcolor="background.default"
     >
       <Logo />
+      <Switch
+        defaultValue={theme !== 'dark'}
+        updater={toggleTheme}
+        Left={<Brightness4 />}
+        Right={<WbIncandescent />}
+      />
     </Box>
   )
 }

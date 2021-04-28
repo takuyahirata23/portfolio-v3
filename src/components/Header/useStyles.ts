@@ -6,10 +6,12 @@ type Args = {
 
 export default makeStyles(() => ({
   header: ({ isTop }: Args) => ({
-    display: isTop ? 'block' : 'none',
+    display: isTop ? 'flex' : 'none',
+    justifyContent: 'space-between',
     position: 'fixed',
     top: 0,
     left: 0,
     right: 0,
+    zIndex: 100,
   }),
 }))
