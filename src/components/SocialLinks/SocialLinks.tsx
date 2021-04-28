@@ -16,7 +16,7 @@ const links = [
   },
 ]
 
-export default function SocialLinks(): JSX.Element {
+export default function SocialLinks() {
   return (
     <>
       {links.map(({ url, Icon }) => (
