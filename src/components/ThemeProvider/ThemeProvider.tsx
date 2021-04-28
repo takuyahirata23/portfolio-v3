@@ -1,23 +1,22 @@
 import React from 'react'
 import { ThemeProvider as MuiThemeProvider } from '@material-ui/core'
 import { darkTheme, lightTheme } from '../../utils/theme'
-
-const getTheme = (theme: 'dark' | 'light') =>
-  theme === 'dark' ? darkTheme : lightTheme
+import { O } from '../../utils/types'
 
 type Props = {
   children: React.ReactNode
 }
 
-export type ThemeContext = {
-  theme: 'dark' | 'light'
-  toggleTheme: () => void
-}
+type Theme = 'dark' | 'light'
 
-export const ThemeContext = React.createContext<{ [key: string]: any }>()
+const getTheme = (theme: Theme): any =>
+  theme === 'dark' ? darkTheme : lightTheme
+
+export const ThemeContext = React.createContext<O>({})
 
 export default function ThemeProvider({ children }: Props) {
-  const [theme, setTheme] = React.useState('dark')
+  const [theme, setTheme] = React.useState<Theme>('dark')
+
   const toggleTheme = () =>
     setTheme(theme => (theme === 'dark' ? 'light' : 'dark'))
 
