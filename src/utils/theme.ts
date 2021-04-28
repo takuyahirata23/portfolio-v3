@@ -23,29 +23,6 @@ export const darkTheme = createMuiTheme({
   },
 })
 
-export const lightTheme = createMuiTheme({
-  palette: {
-    type: 'light',
-    primary: {
-      contrastText: '#1c1b1b',
-      main: '#5BC0BE',
-      light: '#3A506B',
-      dark: '#1C2541',
-    },
-    text: {
-      primary: '#1c1b1b',
-      secondary: '#000000',
-    },
-    background: {
-      default: '#FFFFFF',
-    },
-    divider: '#3A506B',
-  },
-  typography: {
-    fontFamily: ['Roboto', 'sans-serif'].join(', '),
-  },
-})
-
 darkTheme.typography.h1 = {
   fontSize: '2rem',
   fontFamily: ['Roboto', 'sans-serif'].join(', '),
@@ -112,6 +89,29 @@ darkTheme.typography.body2 = {
     fontSize: '17rem',
   },
 }
+
+export const lightTheme = createMuiTheme({
+  palette: {
+    type: 'light',
+    primary: {
+      contrastText: '#1c1b1b',
+      main: '#5BC0BE',
+      light: '#3A506B',
+      dark: '#1C2541',
+    },
+    text: {
+      primary: '#1c1b1b',
+      secondary: '#524747',
+    },
+    background: {
+      default: '#FFFFFF',
+    },
+    divider: '#3A506B',
+  },
+  typography: {
+    fontFamily: ['Roboto', 'sans-serif'].join(', '),
+  },
+})
 
 lightTheme.typography.h1 = {
   fontSize: '2rem',

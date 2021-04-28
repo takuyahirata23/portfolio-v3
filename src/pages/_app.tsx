@@ -8,7 +8,9 @@ const getTheme = (theme: 'dark' | 'light') =>
   theme === 'dark' ? darkTheme : lightTheme
 
 function MyApp({ Component, pageProps }: any) {
-  const [theme, setTheme] = React.useState<'dark' | 'light'>('light')
+  const [theme, setTheme] = React.useState<'dark' | 'light'>('dark')
+  const toggleTheme = () =>
+    setTheme(theme => (theme === 'dark' ? 'light' : 'dark'))
 
   React.useEffect(() => {
     const jssStyles = document.querySelector('#jss-server-side')
@@ -17,6 +19,8 @@ function MyApp({ Component, pageProps }: any) {
       jssStyles.parentElement.removeChild(jssStyles)
     }
   }, [])
+
+  const props = Object.assign({}, pageProps, { toggleTheme: toggleTheme })
 
   return (
     <>
@@ -28,7 +32,7 @@ function MyApp({ Component, pageProps }: any) {
         />
       </Head>
       <ThemeProvider theme={getTheme(theme)}>
-        <Component {...pageProps} />
+        <Component {...props} />
       </ThemeProvider>
     </>
   )

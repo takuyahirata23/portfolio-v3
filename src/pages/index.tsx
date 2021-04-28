@@ -1,9 +1,10 @@
 import { Layout } from '../elements'
 import { Banner, Profile, Contact } from '../components'
+import { O } from '../utils/types'
 
-export default function Index() {
+export default function Index({ toggleTheme }: O) {
   return (
-    <Layout>
+    <Layout toggleTheme={toggleTheme}>
       <Banner />
       <Profile />
       <Contact />
