@@ -3,15 +3,13 @@ import { Box, Switch } from '@material-ui/core'
 import { Brightness4, WbIncandescent } from '@material-ui/icons'
 import { Logo } from '../../elements'
 import { isScrollYZero } from '../../utils/functions'
+import { ThemeContext } from '../ThemeProvider/ThemeProvider'
 import useStyles from './useStyles'
 
-type Props = {
-  toggleTheme: () => void
-}
-
-export default function Header({ toggleTheme }: Props) {
+export default function Header() {
+  const { theme, toggleTheme } = React.useContext<any>(ThemeContext)
   const [isTop, setIsTop] = React.useState(true)
-  const [checked, setChecked] = React.useState(false)
+  const [checked, setChecked] = React.useState(theme !== 'dark')
   const cls = useStyles({ isTop })
 
   const handleToggle = () => setChecked(cur => !cur)
