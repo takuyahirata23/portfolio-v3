@@ -2,6 +2,7 @@ import type { NextApiRequest, NextApiResponse } from 'next'
 import sgMail from '@sendgrid/mail'
 import { emailNotification, toSender } from '../../emailTemplates'
 import type { O } from '../../utils/types'
+import { getDate } from '../../utils/functions'
 
 const errorPayload = {
   message: 'Sorry, something went wrong. Please try it later.',
@@ -12,9 +13,6 @@ const successPayload = {
   message: 'Thank you for reaching me out!',
   error: false,
 }
-
-const getDate = () =>
-  new Intl.DateTimeFormat('en-US', { dateStyle: 'full' }).format(new Date())
 
 export default (req: NextApiRequest, res: NextApiResponse) => {
   sgMail.setApiKey(process.env.SENDGRID_API_KEY || '')
