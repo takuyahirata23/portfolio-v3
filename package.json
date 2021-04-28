@@ -9,12 +9,12 @@
     "test": "jest --coverage"
   },
   "dependencies": {
-    "@material-ui/core": "^4.11.3",
+    "@material-ui/core": "^4.11.4",
     "@material-ui/icons": "^4.11.2",
-    "@material-ui/lab": "^4.0.0-alpha.57",
+    "@material-ui/lab": "^4.0.0-alpha.58",
     "@sendgrid/mail": "^7.4.2",
     "axios": "^0.21.1",
-    "fp-ts": "^2.10.3",
+    "fp-ts": "^2.10.4",
     "fts-utils": "^1.0.9",
     "next": "10.1.3",
     "ramda": "^0.27.1",
@@ -23,9 +23,9 @@
     "typeface-roboto": "^1.1.13"
   },
   "devDependencies": {
-    "@types/jest": "^26.0.22",
+    "@types/jest": "^26.0.23",
     "@types/material-ui": "^0.21.8",
-    "@types/node": "^14.14.41",
+    "@types/node": "^15.0.1",
     "@types/ramda": "github:types/npm-ramda#dist",
     "babel-jest": "^26.6.3",
     "typescript": "^4.2.4"

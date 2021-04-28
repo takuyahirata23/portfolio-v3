@@ -6,6 +6,9 @@ export const toBoolean = (x: any): boolean => Boolean(x)
 
 export const getHeight = prop('innerHeight')
 
+export const getDate = () =>
+  new Intl.DateTimeFormat('en-US', { dateStyle: 'full' }).format(new Date())
+
 export const toLabel = (str: string): string =>
   toUpper(str.charAt(0)).concat(str.slice(1))
 

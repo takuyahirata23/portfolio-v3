@@ -1,11 +1,10 @@
-import { useEffect } from 'react'
+import React from 'react'
 import Head from 'next/head'
-import { ThemeProvider } from '@material-ui/core'
-import { darkTheme } from '../utils/theme'
+import { ThemeProvider } from '../components'
 import '../styles/globals.css'
 
 function MyApp({ Component, pageProps }: any) {
-  useEffect(() => {
+  React.useEffect(() => {
     const jssStyles = document.querySelector('#jss-server-side')
     if (jssStyles) {
       //@ts-ignore
@@ -22,7 +21,7 @@ function MyApp({ Component, pageProps }: any) {
           content="minimum-scale=1, initial-scale=1, width=device-width"
         />
       </Head>
-      <ThemeProvider theme={darkTheme}>
+      <ThemeProvider>
         <Component {...pageProps} />
       </ThemeProvider>
     </>
