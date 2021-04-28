@@ -31,11 +31,11 @@ export default function useSubmit(submitF: () => any) {
       submitF(),
       E.fold(identity, (te: () => Promise<any>) => {
         setStatus('fetching')
-        te().then(E.fold(updateState, updateState))
+        te()
+          .then(E.fold(updateState, updateState))
+          .finally(() => setTimeout(() => setStatus('idle'), 3000))
       })
     )
-
-    setTimeout(() => setStatus('idle'), 3000)
   }
 
   return {
