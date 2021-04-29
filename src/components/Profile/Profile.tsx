@@ -8,6 +8,7 @@ import {
 } from '@material-ui/core'
 import SocialLinks from '../SocialLinks'
 import useStyles from './useStyles'
+import { GITHUB, NPM } from '../../utils/constants'
 
 const align = (predicate: boolean): 'left' | 'center' =>
   predicate ? 'left' : 'center'
@@ -51,13 +52,13 @@ export default function Profile() {
         <Grid item xs={12}>
           <Typography color="textSecondary" paragraph align={alignment}>
             Motivated software engineer based in Toronto. <br />
-            Feel free to check my repositories or my npm packages{' '}
-            <a
-              href="https://www.npmjs.com/~h.takuya"
-              target="_blank"
-              className={cls.link}
-            >
-              here
+            Feel free to check my{' '}
+            <a href={GITHUB.URL} target="_blank" className={cls.link}>
+              {GITHUB.LABEL}
+            </a>{' '}
+            or{' '}
+            <a href={NPM.URL} target="_blank" className={cls.link}>
+              {NPM.LABEL}
             </a>
           </Typography>
         </Grid>
