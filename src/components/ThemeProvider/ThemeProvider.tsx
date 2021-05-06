@@ -9,8 +9,9 @@ type Props = {
 
 type Theme = 'dark' | 'light'
 
-const getTheme = (theme: Theme): any =>
-  theme === 'dark' ? darkTheme : lightTheme
+const themes = { dark: darkTheme, light: lightTheme }
+
+const getTheme = (theme: Theme): any => themes[theme]
 
 export const ThemeContext = React.createContext<O>({})
 

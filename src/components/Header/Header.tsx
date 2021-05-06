@@ -21,8 +21,6 @@ export default function Header() {
     }
   }, [])
 
-  console.log(theme)
-
   return (
     <Box
       component="header"
